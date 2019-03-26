@@ -60,7 +60,7 @@ h3
 .horizontalNav
 {
   max-width: calc(100% - 300px);
-  width: calc(100% - 25%);
+  width: 75%;
   min-width: calc(100% - 420px);
   float: right;
   position: relative;
@@ -101,4 +101,13 @@ h3
 #imgRight
 {
   right: 0;
+}
+
+/* Main page */
+
+.mainDiv
+{
+  width: 75%;
+  float: right;
+  position: relative;
 }

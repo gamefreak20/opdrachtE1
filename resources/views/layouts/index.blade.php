@@ -64,8 +64,11 @@
               </ul>
           </div>
       </nav>
+      <div class="mainDiv">
 
     @yield('content')
+
+      </div>
 
   </body>
   </html>
