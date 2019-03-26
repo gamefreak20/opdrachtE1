@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -14,7 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = find(Auth::user()->id->get());
+        $user = User::find(Auth::user()->id);
 
         return view('profile', compact(['user']));
     }
@@ -71,7 +73,36 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        $input = $request->validate([
+            'name' => 'required|max:191',
+            'email' => 'required|max:191|email',
+            'password' => 'required|min:8',
+        ]);
+
+        $passwordReset = $request->validate([
+            'newPassword' => 'min:8',
+            'newPassword2' => 'min:8',
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        if (!Hash::check($input['password'], $user->password)) {
+            return redirect(route('profile.index'));
+        }
+
+        $input['password'] = $user->password;
+        if ($passwordReset['newPassword'] != "") {
+            if ($passwordReset['newPassword'] != $passwordReset['newPassword2']) {
+                return redirect(route('profile.index'));
+            } else {
+                $input['password'] = Hash::make($passwordReset['newPassword']);
+            }
+        }
+
+        $user->update($input);
+
+        return redirect(route('profile.index'));
+
     }
 
     /**
