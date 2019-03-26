@@ -19,7 +19,7 @@ class CreateAssignmentsTable extends Migration
             $table->string('title');
             $table->integer('time');
             $table->integer('value');
-            $table->string('Conditional')->nullable();
+            $table->string('conditional')->nullable();
             $table->timestamps();
         });
     }

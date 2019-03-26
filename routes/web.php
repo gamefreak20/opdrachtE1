@@ -15,6 +15,11 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'IndexController@index');
+    Route::resource('/', 'IndexController');
+    Route::resource('/profile', 'ProfileController');
+    Route::resource('/assignments', 'AssignmentsController');
+    Route::resource('/classes', 'ClassesController');
+    Route::resource('/groupe', 'GroupesController');
+    Route::resource('/student', 'StudentsController');
 
 });

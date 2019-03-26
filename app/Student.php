@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+
+    protected $fillable = [
+        'student_number',
+        'name',
+    ];
+
     public function groupe()
     {
         return $this->hasMany('App\Groupe');
