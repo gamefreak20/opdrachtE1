@@ -27,7 +27,9 @@ h3
 /* Navbar */
 .verticalNav
 {
-  width: 420px;
+  max-width: 420px;
+  width: 25%;
+  min-width: 300px;
   float: left;
   position: fixed;
   height: 100vh;
@@ -57,7 +59,9 @@ h3
 
 .horizontalNav
 {
-  width: calc(100% - 420px);
+  max-width: calc(100% - 300px);
+  width: calc(100% - 25%);
+  min-width: calc(100% - 420px);
   float: right;
   position: relative;
   background-color: #A2E147;
