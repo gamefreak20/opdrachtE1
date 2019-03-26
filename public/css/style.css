@@ -1,0 +1,21 @@
+p
+{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+}
+
+/* Navbar */
+.verticalNav
+{
+  width: 420px;
+}
+
+.horizontalNav
+{
+  width: calc(100% - 420px);
+}
+
+#logout
+{
+  float: right;
+}
