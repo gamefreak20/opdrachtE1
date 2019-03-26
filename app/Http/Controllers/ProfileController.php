@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -13,7 +14,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $user = find(Auth::user()->id->get());
+
+        return view('profile', compact(['user']));
     }
 
     /**
@@ -23,7 +26,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -34,7 +37,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -45,7 +48,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -56,7 +59,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -68,7 +71,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -79,6 +82,6 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        abort(404);
     }
 }
