@@ -5,53 +5,55 @@
 @endsection
 
 @section('css')
-  
+
 @endsection
 
 
 @section('content')
-    <div>
         <nav>
             <div class="verticalNav"> {{-- Vertical navbar --}}
                 <div>
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column" id="verticalNav">
+                      <li class="nav-item">
+                          <h3>Menu</h3>
+                      </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#"><p>Home</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Studenten</a>
+                            <a class="nav-link" href="#"><p>Studenten</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Klas</a>
+                            <a class="nav-link" href="#"><p>Klas</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Opdrachten</a>
+                            <a class="nav-link" href="#"><p>Opdrachten</p></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Groepen</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">John Doe</a>
-                            <img src="{{ asset('images/header/glr.jpg') }}">
+                            <a class="nav-link" href="#"><p>Groepen</p></a>
                         </li>
                     </ul>
+                    <div class="profileNav">
+                        <ul class="nav" id="nameNav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><p>John Doe</p></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" id="imgRight"><img src="{{ asset('images/header/gear.png') }}" width="50"></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="horizontalNav"> {{-- Horizontal navbar --}}
                 <ul class="nav">
                     <li class="nav-item">
-                        <img src="{{ asset('images/header/glr.jpg') }}">
+                        <img src="{{ asset('images/header/glr.jpg') }}" width="100">
                     </li>
                     <li class="nav-item" id="logout">
-                        <a class="nav-link" href="#">Loguit</a>
+                        <a class="nav-link" href="#"><p>Loguit</p></a>
                     </li>
                 </ul>
             </div>
         </nav>
-    </div>
-
     @endsection

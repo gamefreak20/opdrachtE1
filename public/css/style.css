@@ -1,21 +1,100 @@
+body
+{
+  background-color: #E4E4E4 !important;
+}
+
 p
 {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
+  color: white;
+  font-size: 20px;
+  margin: 0 !important;
+}
+
+h3
+{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold !important;
+  color: white;
+}
+
+.nav-link
+{
+  padding: 0 20px;
 }
 
 /* Navbar */
 .verticalNav
 {
   width: 420px;
+  float: left;
+  position: fixed;
+  height: 100vh;
+  -webkit-box-shadow: 0px 0px 24px rgba(0, 0, 0, .16);
+  -moz-box-shadow: 0px 0px 24px rgba(0, 0, 0, .16);
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, .16);
+  z-index: 2;
+  background-color: white;
+}
+
+#verticalNav p, h3
+{
+  color: #A2E147;
+}
+
+#verticalNav h3
+{
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 20px;
+}
+
+#verticalNav p
+{
+  margin-left: 20px !important;
 }
 
 .horizontalNav
 {
   width: calc(100% - 420px);
+  float: right;
+  position: relative;
+  background-color: #A2E147;
+  height: 100px;
+  z-index: 1;
+}
+
+.profileNav
+{
+  background-color: #A2E147;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 #logout
 {
   float: right;
+}
+
+#logout a
+{
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  right: 0;
+}
+
+#nameNav a
+{
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+#imgRight
+{
+  right: 0;
 }
