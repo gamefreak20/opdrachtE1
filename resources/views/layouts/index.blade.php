@@ -54,7 +54,7 @@
               </div>
           </div>
           <div class="horizontalNav"> {{-- Horizontal navbar --}}
-              <ul class="nav">
+              <ul class="nav" id="horizontalNav">
                   <li class="nav-item">
                       <img src="{{ asset('images/header/glr.jpg') }}" width="100">
                   </li>

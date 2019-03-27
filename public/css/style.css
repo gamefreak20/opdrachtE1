@@ -55,6 +55,12 @@ h3
 #verticalNav p
 {
   margin-left: 20px !important;
+  transition: .2s
+}
+
+#verticalNav p:hover
+{
+  color: #85c12e;
 }
 
 .horizontalNav
@@ -67,6 +73,16 @@ h3
   background-color: #A2E147;
   height: 100px;
   z-index: 1;
+}
+
+#horizontalNav p
+{
+  transition: .2s;
+}
+
+#horizontalNav p:hover
+{
+  color: #85c12e;
 }
 
 .profileNav
@@ -107,7 +123,11 @@ h3
 
 .mainDiv
 {
+  max-width: calc(100% - 300px);
   width: 75%;
+  min-width: calc(100% - 420px);
   float: right;
   position: relative;
+
+
 }
