@@ -13,8 +13,10 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function ()
+{
 
+    Route::get('/logoutLink', 'GetRequestController@logoutLink');
     Route::resource('/', 'IndexController');
     Route::resource('/profile', 'ProfileController');
     Route::resource('/assignments', 'AssignmentsController');

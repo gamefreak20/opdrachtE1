@@ -47,7 +47,7 @@
                               <a class="nav-link" href="#"><p>John Doe</p></a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link" href="#" id="imgRight"><img src="{{ asset('images/header/gear.png') }}" width="50"></a>
+                              <a class="nav-link" href="{{route('profile.index')}}" id="imgRight"><img src="{{ asset('images/header/gear.png') }}" width="50"></a>
                           </li>
                       </ul>
                   </div>
@@ -59,7 +59,7 @@
                       <img src="{{ asset('images/header/glr.jpg') }}" width="100">
                   </li>
                   <li class="nav-item" id="logout">
-                      <a class="nav-link" href="#"><p>Loguit</p></a>
+                      <a class="nav-link" href="{{url('/logoutLink')}}"><p>Loguit</p></a>
                   </li>
               </ul>
           </div>
