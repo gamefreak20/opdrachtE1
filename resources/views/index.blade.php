@@ -12,6 +12,9 @@
 
   <div class="row">
     <div class="col item">
+      <a href="" class="hitbox">
+        <h1 class="addItem">+</h1>
+      </a>
     </div>
     <div class="col item">
     </div>
