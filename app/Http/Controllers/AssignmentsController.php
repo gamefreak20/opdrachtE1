@@ -13,7 +13,7 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        abort(404);
+        return view('assignments.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class AssignmentsController extends Controller
      */
     public function create()
     {
-        abort(404);
+        return view('assignments.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class AssignmentsController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        return view('assignments.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class AssignmentsController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return view('assignments.update');
     }
 
     /**

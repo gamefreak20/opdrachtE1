@@ -13,7 +13,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        abort(404);
+        return view('students.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        abort(404);
+        return view('students.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        return view('students.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return view('students.update');
     }
 
     /**

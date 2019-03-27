@@ -26,19 +26,19 @@
                           <h3>Menu</h3>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#"><p>Home</p></a>
+                          <a class="nav-link" href="{{route('index')}}"><p>Home</p></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#"><p>Studenten</p></a>
+                          <a class="nav-link" href="{{route('student.index')}}"><p>Studenten</p></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#"><p>Klas</p></a>
+                          <a class="nav-link" href="{{route('classes.index')}}"><p>Klas</p></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#"><p>Opdrachten</p></a>
+                          <a class="nav-link" href="{{route('assignments.index')}}"><p>Opdrachten</p></a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#"><p>Groepen</p></a>
+                          <a class="nav-link" href="{{route('groupe.index')}}"><p>Groepen</p></a>
                       </li>
                   </ul>
                   <div class="profileNav">

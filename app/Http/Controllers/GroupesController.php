@@ -13,7 +13,7 @@ class GroupesController extends Controller
      */
     public function index()
     {
-        abort(404);
+        return view('groupes.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class GroupesController extends Controller
      */
     public function create()
     {
-        abort(404);
+        return view('groupes.create');
     }
 
     /**
@@ -45,7 +45,7 @@ class GroupesController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        return view('groupes.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class GroupesController extends Controller
      */
     public function edit($id)
     {
-        abort(404);
+        return view('groupes.update');
     }
 
     /**
