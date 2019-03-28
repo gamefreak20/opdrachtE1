@@ -17,6 +17,12 @@ Route::group(['middleware' => 'auth'], function ()
 {
 
     Route::get('/logoutLink', 'GetRequestController@logoutLink');
+
+    Route::post('/language', array(
+        'Middleware' => 'LanguageSwitcher',
+        'uses' => 'LanguageController@index',
+    ));
+
     Route::resource('/', 'IndexController');
     Route::resource('/profile', 'ProfileController');
     Route::resource('/assignments', 'AssignmentsController');
