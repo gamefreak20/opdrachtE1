@@ -11,15 +11,6 @@
 
 @section('content')
 
-    <form action="language" method="post">
-        {{ csrf_field() }}
-        <select name="locale">
-            <option value="nl">Nederlands</option>
-            <option value="en">Engels</option>
-        </select>
-        <input type="submit" value="verander taal">
-    </form>
-
 <div class="row">
   <div class="col card">
     {!! Form::model($user, ['method'=>'PATCH', 'action'=>['ProfileController@update', $user->id], 'class' => 'postForm']) !!}
