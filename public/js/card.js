@@ -8,7 +8,7 @@ $(document).ready(function()
 
   function time()
   {
-    timeText = ((h.toString().length == 1) ? "0" + h : h) + " : " + ((m.toString().length == 1) ? "0" + m : m) + " : " + ((s.toString().length == 1) ? "0" + s : s);
+    timeText = ((h.toString().length == 1) ? "0" + h : h) + ":" + ((m.toString().length == 1) ? "0" + m : m) + ":" + ((s.toString().length == 1) ? "0" + s : s);
     $('.timeText').html(timeText);
   }
 
