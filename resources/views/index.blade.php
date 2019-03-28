@@ -18,6 +18,7 @@
     </div>
     <div class="col item">
       <a href="" class="hitbox">
+        <canvas id="myChart"></canvas>
       </a>
     </div>
   </div>
