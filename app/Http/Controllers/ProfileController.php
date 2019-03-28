@@ -79,23 +79,30 @@ class ProfileController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        $passwordReset = $request->validate([
-            'newPassword' => 'min:8',
-            'newPassword2' => 'min:8',
+        $passwordResetOld = $request->validate([
+            'newPassword' => '',
+            'newPassword2' => '',
         ]);
+
+        if ($passwordResetOld['newPassword'] != "") {
+            $passwordReset = $request->validate([
+                'newPassword' => 'min:8',
+                'newPassword2' => 'min:8',
+            ]);
+        } else {
+            $passwordReset['newPassword'] = "";
+        }
 
         $user = User::find(Auth::user()->id);
 
         if (!Hash::check($input['password'], $user->password)) {
-//            return redirect(route('profile.index'));
-            return 1;
+            return redirect(route('profile.index'));
         }
 
         $input['password'] = $user->password;
         if ($passwordReset['newPassword'] != "") {
             if ($passwordReset['newPassword'] != $passwordReset['newPassword2']) {
-//                return redirect(route('profile.index'));
-                return 2;
+                return redirect(route('profile.index'));
             } else {
                 $input['password'] = Hash::make($passwordReset['newPassword']);
             }
@@ -103,9 +110,7 @@ class ProfileController extends Controller
 
         $user->update($input);
 
-//        return redirect(route('profile.index'));
-        return 3;
-
+        return redirect(route('profile.index'));
     }
 
     /**
