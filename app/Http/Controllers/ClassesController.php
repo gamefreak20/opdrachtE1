@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classe;
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
@@ -13,7 +14,8 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        return view('classes.index');
+        $classes = Classe::all();
+        return view('classes.index', compact(['classes']));
     }
 
     /**
@@ -34,7 +36,13 @@ class ClassesController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        $input = $request->validate([
+            'name' => 'required|max:191',
+        ]);
+
+        Classe::create($input);
+
+        return redirect(route('classes.index'));
     }
 
     /**
@@ -45,7 +53,9 @@ class ClassesController extends Controller
      */
     public function show($id)
     {
-        return view('classes.show');
+//        $class = Classe::find(1)->student->all();
+        $class = Student::findOrFail($id);
+        return view('classes.show', compact(['class']));
     }
 
     /**
@@ -56,7 +66,8 @@ class ClassesController extends Controller
      */
     public function edit($id)
     {
-        return view('classes.update');
+        $class = Student::findOrFail($id);
+        return view('classes.update', compact(['class']));
     }
 
     /**
@@ -68,7 +79,15 @@ class ClassesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        $input = $request->validate([
+            'name' => 'required|max:191',
+        ]);
+
+        $class = Classe::findOrFail($id);
+        $class->update($input);
+
+        return redirect(route('classes.index'));
+
     }
 
     /**
@@ -79,6 +98,9 @@ class ClassesController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        $class = Classe::findOrFail($id);
+        $class->delete();
+
+        return redirect(route('classes.index'));
     }
 }
