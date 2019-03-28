@@ -29,9 +29,8 @@
 
 .hitbox
 {
-  width: calc(100% + 40px);
+  width: 100%;
   position: relative;
-  margin-left: -20px;
   height: 100%;
   display: block;
 }

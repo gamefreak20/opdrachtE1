@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('javascript')
-
+  <script src="{{asset('js/chart.js')}}"></script>
 @endsection
 
 @section('css')

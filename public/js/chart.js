@@ -1,22 +1,20 @@
 $(document).ready(function()
 {
   var ctx = document.getElementById('myChart').getContext('2d');
-  var chart = new Chart(ctx, {
-      // The type of chart we want to create
+  var myLineChart = new Chart(ctx, {
       type: 'line',
-
-      // The data for our dataset
       data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [{
-              label: 'My First dataset',
-              backgroundColor: 'rgb(255, 99, 132)',
-              borderColor: 'rgb(255, 99, 132)',
-              data: [0, 10, 5, 2, 20, 30, 45]
-          }]
-      },
+        labels: ['04-2019', '06-2019', '08-2019'],
+        datasets: [{
+            label: 'Gemiddelde cijfer alle klassen',
+            backgroundColor: '#A2E147',
+            borderColor: '#A2E147',
+            data: [0, 10, 5]
+        }]
+    },
 
-      // Configuration options go here
-      options: {}
+     options: {
+       
+     }
   });
-}
+})
