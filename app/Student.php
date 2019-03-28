@@ -10,6 +10,8 @@ class Student extends Model
     protected $fillable = [
         'student_number',
         'name',
+        'insertion',
+        'last_name',
     ];
 
     public function groupe()

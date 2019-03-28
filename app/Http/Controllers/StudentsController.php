@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -13,7 +14,8 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        return view('students.index');
+        $students = Student::all();
+        return view('students.index', compact(['students']));
     }
 
     /**
@@ -45,7 +47,8 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        return view('students.show');
+        $student = Student::findOrFail($id);
+        return view('students.show', compact(['student']));
     }
 
     /**
@@ -56,7 +59,8 @@ class StudentsController extends Controller
      */
     public function edit($id)
     {
-        return view('students.update');
+        $student = Student::findOrFail($id);
+        return view('students.update', compact(['student']));
     }
 
     /**
@@ -68,7 +72,18 @@ class StudentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        $input = $request->validate([
+            'student_number' => 'required|max:11|number',
+            'name' => 'required|max:191',
+            'insertion' => 'required|max:191',
+            'last_name' => 'required|max:191',
+        ]);
+
+        $student = Student::findOrFail($id);
+        $student->update($input);
+
+//        return redirect('');
+
     }
 
     /**
