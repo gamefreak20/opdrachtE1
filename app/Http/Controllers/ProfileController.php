@@ -87,13 +87,15 @@ class ProfileController extends Controller
         $user = User::find(Auth::user()->id);
 
         if (!Hash::check($input['password'], $user->password)) {
-            return redirect(route('profile.index'));
+//            return redirect(route('profile.index'));
+            return 1;
         }
 
         $input['password'] = $user->password;
         if ($passwordReset['newPassword'] != "") {
             if ($passwordReset['newPassword'] != $passwordReset['newPassword2']) {
-                return redirect(route('profile.index'));
+//                return redirect(route('profile.index'));
+                return 2;
             } else {
                 $input['password'] = Hash::make($passwordReset['newPassword']);
             }
@@ -101,7 +103,8 @@ class ProfileController extends Controller
 
         $user->update($input);
 
-        return redirect(route('profile.index'));
+//        return redirect(route('profile.index'));
+        return 3;
 
     }
 
