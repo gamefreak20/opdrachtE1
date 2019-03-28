@@ -17,8 +17,8 @@
       </a>
     </div>
     <div class="col item">
-    </div>
-    <div class="col item">
+      <a href="" class="hitbox">
+      </a>
     </div>
   </div>
 @endsection
