@@ -44,7 +44,7 @@
                   <div class="profileNav">
                       <ul class="nav" id="nameNav">
                           <li class="nav-item">
-                            <p>John Doe</p>
+                            <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="{{route('profile.index')}}" id="imgRight"><img src="{{ asset('images/header/gear.png') }}" width="50"></a>

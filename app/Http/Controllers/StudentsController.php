@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentsController extends Controller
@@ -36,7 +37,16 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        $input = $request->validate([
+            'student_number' => 'required|numeric',
+            'name' => 'required|max:191',
+            'insertion' => 'max:191',
+            'last_name' => 'required|max:191',
+        ]);
+
+        Student::create($input);
+
+        return redirect(route('student.index'));
     }
 
     /**
@@ -73,16 +83,16 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->validate([
-            'student_number' => 'required|max:11|number',
+            'student_number' => 'required|numeric',
             'name' => 'required|max:191',
-            'insertion' => 'required|max:191',
+            'insertion' => 'max:191',
             'last_name' => 'required|max:191',
         ]);
 
         $student = Student::findOrFail($id);
         $student->update($input);
 
-//        return redirect('');
+        return redirect(route('student.index'));
 
     }
 
@@ -94,6 +104,9 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect(route('student.index'));
     }
 }
