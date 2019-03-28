@@ -12,9 +12,6 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-
-    protected $languages = ['nl'];
-
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
