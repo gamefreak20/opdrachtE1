@@ -12,7 +12,7 @@
 @section('content')
 
     <form action="language" method="post">
-        {{ csrf_token() }}
+        {{ csrf_field() }}
         <select name="locale">
             <option value="nl">Nederlands</option>
             <option value="en">Engels</option>
@@ -29,12 +29,21 @@
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          <p>naam: <input type="text" class="form-control" name="name" value="{{$user->name}}" required><br>
-          <p>email: <input type="email" class="form-control" name="email" value="{{$user->email}}" required></p><br>
-          <p>nieuw wachtwoord: <input type="password" class="form-control" name="newPassword"></p><br>
-          <p>herhaal wachtwoord: <input type="password" class="form-control" name="newPassword2"></p><br>
-
-          <p>* jouw wachtwoord: <input type="password" class="form-control" name="password" required></p><br>
+          <small id="emailHelp" class="form-text text-muted">* Moet je invullen</small>
+          <label for="info">Info</label>
+          <input type="text" id="info" class="form-control" name="name" value="{{$user->name}}" required placeholder="* Naam">
+          <input type="email" class="form-control" name="email" value="{{$user->email}}" required placeholder="* E-mail">
+          <label for="newPassword">Nieuw wachtwoord</label>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Nieuw wachtwoord">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="password" class="form-control" name="newPassword2" placeholder="Herhaal wachtwoord">
+            </div>
+          </div>
+          <label for="password">Wachtwoord</label>
+          <input type="password" id="password" class="form-control" name="password" required placeholder="* Wachtwoord"><br>
 
           <button type="submit" class="btn btn-primary"><p>Verander</p></button>
         </blockquote>
