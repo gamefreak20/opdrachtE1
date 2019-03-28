@@ -107,11 +107,16 @@ h3
   right: 0;
 }
 
-#nameNav a
+#nameNav a,#nameNav p
 {
   top: 50%;
   transform: translateY(-50%);
   position: absolute;
+}
+
+#nameNav p
+{
+  margin-left: 20px !important;
 }
 
 #imgRight

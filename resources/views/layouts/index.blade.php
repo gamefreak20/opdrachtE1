@@ -44,7 +44,7 @@
                   <div class="profileNav">
                       <ul class="nav" id="nameNav">
                           <li class="nav-item">
-                              <a class="nav-link" href="#"><p>John Doe</p></a>
+                            <p>John Doe</p>
                           </li>
                           <li class="nav-item">
                               <a class="nav-link" href="#" id="imgRight"><img src="{{ asset('images/header/gear.png') }}" width="50"></a>
