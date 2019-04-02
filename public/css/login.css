@@ -1,0 +1,69 @@
+input
+{
+  max-width: 500px;
+}
+
+.card
+{
+  max-width: 550px;
+}
+
+.col
+{
+  margin: 40vh auto 0;
+  transform: translateY(-50%);
+}
+
+#remember
+{
+  font-weight: 400;
+}
+
+.form-check-input
+{
+  position: relative;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+p
+{
+  font-family: Nunito, sans-serif;
+  font-weight: 400;
+  font-size: 14.4px !important;
+}
+
+span p
+{
+  display: inline;
+}
+
+span
+{
+  margin-left: 20px;
+}
+.btn-link
+{
+  color: #A2E147;
+  position: relative;
+  float: right;
+}
+
+.btn-link:hover
+{
+  color: #85c12e;
+}
+
+body
+{
+  background-image: url("https://source.unsplash.com/1920x1080/?landscape,nature");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#bgColor
+{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(165, 226, 71, 0.27);
+}
