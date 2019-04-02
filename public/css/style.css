@@ -119,6 +119,18 @@ h3
   right: 0;
 }
 
+#imgRight svg
+{
+  fill: white;
+  transition: .2s;
+  height: 40px;
+}
+
+#imgRight:hover svg
+{
+  fill: #85c12e;
+}
+
 /* Main page */
 
 .mainDiv

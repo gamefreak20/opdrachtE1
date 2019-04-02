@@ -12,16 +12,16 @@
 
   <div class="row">
     <div class="col item">
-      <span><p class="delete">Delete</p></span>
+      <span><a href=""><p class="delete">Delete</p></a></span>
       <a href="" class="hitbox">
         <h1 class="addItem">+</h1>
       </a>
     </div>
     <div class="col item">
-      <span><p class="delete">Delete</p></span>
-      <a href="" class="hitbox">
-        <canvas id="myChart" width="800" height="400"></canvas>
-      </a>
+      <span><a href=""><p class="delete">Delete</p></a></span>
+        <a href="" class="hitbox">
+          <canvas id="myChart" width="800" height="400"></canvas>
+        </a>
     </div>
   </div>
 @endsection
