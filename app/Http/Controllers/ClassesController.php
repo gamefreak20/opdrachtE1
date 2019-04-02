@@ -54,8 +54,9 @@ class ClassesController extends Controller
     public function show($id)
     {
 //        $class = Classe::find(1)->student->all();
-        $class = Student::findOrFail($id);
-        return view('classes.show', compact(['class']));
+        $class = Classe::findOrFail($id);
+        $students = $class->students();
+        return view('classes.show', compact(['class', 'students']));
     }
 
     /**
