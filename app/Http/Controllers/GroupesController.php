@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Groupe;
+use App\Student;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class GroupesController extends Controller
@@ -13,7 +16,45 @@ class GroupesController extends Controller
      */
     public function index()
     {
-        return view('groupes.index');
+        $newGroupe = array();
+        $output = array();
+        $times = 0;
+
+//        $groupes = Groupe::all()->orderBy('groupe_id', 'desc');
+
+        $groupes = DB::table('groupes')
+            ->orderBy('groupe_id', 'desc')
+            ->get();
+        foreach ($groupes as $groupe) {
+            foreach ($groupe as $group) {
+                $times++;
+                switch ($times) {
+                    case 1:
+                        $newGroupe['id'] = $group;
+                        break;
+                    case 2:
+                        $newGroupe['student_id'] = $group;
+                        break;
+                    case 3:
+                        $newGroupe['groupe_id'] = $group;
+                        break;
+                    case 4:
+                        $newGroupe['created_at'] = $group;
+                        break;
+                    case 5:
+                        $newGroupe['updated_at'] = $group;
+                        break;
+
+                        default:
+                        $times = 0;
+                }
+            }
+            $times = 0;
+            $output[] = $newGroupe;
+            $newGroupe = array();
+        }
+        $groupes = $output;
+        return view('groupes.index', compact(['groupes']));
     }
 
     /**
@@ -34,7 +75,14 @@ class GroupesController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        $input = $request->validate([
+            'student_id' => 'required|numeric',
+            'groupe_id' => 'required|numeric',
+        ]);
+
+        Groupe::create($input);
+
+        return redirect(route('groupes.index'));
     }
 
     /**
@@ -45,7 +93,8 @@ class GroupesController extends Controller
      */
     public function show($id)
     {
-        return view('groupes.show');
+        $groupe = Groupe::where('groupe_id', $id)->get();
+        return view('groupes.show', compact('groupe'));
     }
 
     /**
@@ -56,7 +105,8 @@ class GroupesController extends Controller
      */
     public function edit($id)
     {
-        return view('groupes.update');
+        $groupe = Groupe::where('groupe_id', $id)->get();
+        return view('groupes.update', compact('groupe'));
     }
 
     /**
@@ -68,7 +118,15 @@ class GroupesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        $input = $request->validate([
+            'student_id' => 'required|numeric',
+            'groupe_id' => 'required|numeric',
+        ]);
+
+        $groupe = Groupe::findOrFail($id);
+        $groupe->update($input);
+
+        return redirect(route('groupes.index'));
     }
 
     /**
@@ -79,6 +137,19 @@ class GroupesController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        $groupe = Groupe::findOrFail($id);
+        $groupe->delete();
+    }
+
+    public function deleteStudent($id)
+    {
+        Groupe::where('id', $id)->delete();
+        return $id;
+    }
+
+    public function searchStudent($id)
+    {
+        $students = Student::where('name', $id)->get();
+        return $students;
     }
 }
