@@ -33,6 +33,8 @@
         @php($first = true)
             @foreach($groupes as $groupe)
 
+                @php ( isset($newGroupeId) ? $newGroupeId = $newGroupeId : $newGroupeId = $groupe->groupe_id )
+
                 @if ($oldGroupeNumber == $groupe->groupe_id)
                     @php($student = \App\Student::find($groupe->student_id))
                     ,{{$student['name']}}
@@ -45,8 +47,8 @@
                             nee
                         </td>
                         <td>
-                            <button onclick="window.location='{{route('groupe.edit', $groupe->groupe_id)}}';">Verander</button>
-                            {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe->groupe_id], 'class' => '']) !!}
+                            <button onclick="window.location='{{route('groupe.edit', $newGroupeId)}}';">Verander</button>
+                            {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $newGroupeId], 'class' => '']) !!}
 
                                 <button type="submit">Verwijder</button>
 
@@ -54,10 +56,10 @@
                         </td>
                         </tr>
                     @endif
-
-                    <tr onclick="window.location='{{route('groupe.show', $groupe->groupe_id)}}';">
-                        <td>{{$groupe->groupe_id}}</td>
-                        <td>
+                    @php($newGroupeId = $groupe->groupe_id)
+                    <tr>
+                        <td onclick="window.location='{{route('groupe.show', $groupe->groupe_id)}}';">{{$groupe->groupe_id}}</td>
+                        <td onclick="window.location='{{route('groupe.show', $groupe->groupe_id)}}';">
                             @php($student = \App\Student::find($groupe->student_id))
                             {{$student['name']}}
 
@@ -71,7 +73,7 @@
                     nee
                 </td>
                 <td>
-                    <button onclick="window.location='{{route('groupe.edit', $groupe->groupe_id)}}';">Verander</button>
+                    <button onclick="window.location='{{route('groupe.update', $groupe->groupe_id)}}';">Verander</button>
                     {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe->groupe_id], 'class' => '']) !!}
 
                     <button type="submit">Verwijder</button>
@@ -81,5 +83,7 @@
                 </tr>
         </tbody>
     </table>
+
+    <button onclick="window.location='{{route('groupe.create')}}';">Maak een groep aan</button>
 
 @endsection

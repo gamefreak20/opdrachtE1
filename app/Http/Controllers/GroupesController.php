@@ -16,9 +16,7 @@ class GroupesController extends Controller
      */
     public function index()
     {
-        $groupes = DB::table('groupes')
-            ->orderBy('groupe_id', 'desc')
-            ->get();
+        $groupes = DB::table('groupes')->orderBy('groupe_id', 'desc')->get();
 
         return view('groupes.index', compact(['groupes']));
     }
@@ -104,13 +102,13 @@ class GroupesController extends Controller
      */
     public function destroy($id)
     {
-        $groupe = Groupe::findOrFail($id);
-        $groupe->delete();
+        $groupe = Groupe::where('groupe_id', $id)->delete();
+        return redirect(route('groupe.index'));
     }
 
     public function deleteStudent($id)
     {
-        Groupe::where('id', $id)->delete();
+        Groupe::where('groupe_id', $id)->delete();
         return $id;
     }
 
@@ -122,7 +120,14 @@ class GroupesController extends Controller
 
     public function addStudentToGroupe(Request $request)
     {
-        Groupe::creating($request);
+        DB::select('INSERT INTO `groupes`(`student_id`, `groupe_id`) VALUES (?,?)', [$request->student_id, $request->groupe_id]);
+        return $request;
+    }
+
+    public function createGroupe(Request $request)
+    {
+        $data = Groupe::all()->orderBy('groupe_id', 'DESC');
+        DB::select("INSERT INTO `groupes` (`student_id`, `groupe_id`) VALUES (?,?)", [$request->student_id, $data->groupe_id]);
         return $request;
     }
 }

@@ -15,10 +15,8 @@
     @csrf
     <input type="hidden" name="groupe_id" value="{{$groupe_id}}" id="groupe_id">
     Studenten naam: <input type="text" id="searchStudent"><br>
-    Geselecteerde student
     <table id="showStudents">
 
     </table>
-
 
 @endsection

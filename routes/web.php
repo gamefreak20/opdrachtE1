@@ -27,4 +27,5 @@ Route::group(['middleware' => 'auth'], function ()
     Route::get('/groupe/deleteStudent/{id}', 'GroupesController@deleteStudent')->name('groupe.deleteStudent');
     Route::get('/searchStudent/{name}', 'GroupesController@searchStudent')->name('student.search');
     Route::post('/groupe/addStudentToGroupe', 'GroupesController@addStudentToGroupe')->name('groupe.addStudentToGroupe');
+    Route::post('/groupe/createGroupe', 'GroupesController@createGroupe')->name('groupe.createGroupe');
 });
