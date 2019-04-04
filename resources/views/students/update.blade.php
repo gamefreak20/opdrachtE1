@@ -11,8 +11,6 @@
 
 @section('content')
 
-
-
     <div class="row">
       <div class="col card">
         {!! Form::open(['method'=>'PATCH', 'action'=>['StudentsController@update', $student->id], 'class' => '']) !!}
