@@ -9,6 +9,7 @@ class Groupe extends Model
 
     protected $fillable = [
         'student_id',
+        'groupe_id'
     ];
 
     public function Student()

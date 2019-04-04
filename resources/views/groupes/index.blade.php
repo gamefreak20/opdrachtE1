@@ -33,8 +33,8 @@
         @php($first = true)
             @foreach($groupes as $groupe)
 
-                @if ($oldGroupeNumber == $groupe['groupe_id'])
-                    @php($student = \App\Student::find($groupe['student_id']))
+                @if ($oldGroupeNumber == $groupe->groupe_id)
+                    @php($student = \App\Student::find($groupe->student_id))
                     ,{{$student['name']}}
                 @else
                     @if ($first)
@@ -45,8 +45,8 @@
                             nee
                         </td>
                         <td>
-                            <button onclick="window.location='{{route('groupe.edit', $groupe['groupe_id'])}}';">Verander</button>
-                            {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe['groupe_id']], 'class' => '']) !!}
+                            <button onclick="window.location='{{route('groupe.edit', $groupe->groupe_id)}}';">Verander</button>
+                            {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe->groupe_id], 'class' => '']) !!}
 
                                 <button type="submit">Verwijder</button>
 
@@ -55,15 +55,15 @@
                         </tr>
                     @endif
 
-                    <tr onclick="window.location='{{route('groupe.show', $groupe['groupe_id'])}}';">
-                        <td>{{$groupe['groupe_id']}}</td>
+                    <tr onclick="window.location='{{route('groupe.show', $groupe->groupe_id)}}';">
+                        <td>{{$groupe->groupe_id}}</td>
                         <td>
-                            @php($student = \App\Student::find($groupe['student_id']))
+                            @php($student = \App\Student::find($groupe->student_id))
                             {{$student['name']}}
 
                 @endif
 
-                @php($oldGroupeNumber = $groupe['groupe_id'])
+                @php($oldGroupeNumber = $groupe->groupe_id)
 
             @endforeach
                 </td>
@@ -71,8 +71,8 @@
                     nee
                 </td>
                 <td>
-                    <button onclick="window.location='{{route('groupe.edit', $groupe['groupe_id'])}}';">Verander</button>
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe['groupe_id']], 'class' => '']) !!}
+                    <button onclick="window.location='{{route('groupe.edit', $groupe->groupe_id)}}';">Verander</button>
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe->groupe_id], 'class' => '']) !!}
 
                     <button type="submit">Verwijder</button>
 
