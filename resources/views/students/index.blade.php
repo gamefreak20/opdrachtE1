@@ -35,7 +35,7 @@
             @foreach($students as $student)
             <tr>
               <th scope="row">1</th>
-              <td>{{$student->name}}</td>
+              <td>{{$student->name}} {{$student->insertion}} {{$student->last_name}}</td>
               <td></td>
               <td></td>
               <td></td>
