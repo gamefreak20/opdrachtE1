@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <link href="{{asset('css/style.css')}}" rel="stylesheet">
 <link href="{{asset('css/card.css')}}" rel="stylesheet">
 <link href="{{asset('css/login.css')}}" rel="stylesheet">
@@ -14,27 +15,22 @@
         {{ __('Reset Password') }}
       </div>
       <div class="card-body">
+        @if (session('status'))
+          <p class="succesSend">{{ session('status') }}</p>
+        @endif
+        @if ($errors->has('email'))
+                <strong class="failSend">{{ $errors->first('email') }}</strong>
+        @endif
         <blockquote class="blockquote mb-0">
               E-mail<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="E-mail">
-              @if ($errors->has('email'))
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('email') }}</strong>
-                  </span>
-              @endif
           <button type="submit" class="btn btn-primary">
               {{ __('Send Password Reset Link') }}
           </button>
-          @if (session('status'))
-              <div class="alert alert-success" role="alert">
-                  {{ session('status') }}
-              </div>
-          @endif
         </blockquote>
       </div>
     </div>
     </form>
   </div>
 </div>
-
 
 @endsection

@@ -112,3 +112,13 @@
 {
   fill: #AC1212;
 }
+
+.succesSend
+{
+  color: #A2E147 !important;
+}
+
+.failSend
+{
+  color: #AC1212 !important;
+}
