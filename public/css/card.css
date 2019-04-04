@@ -69,12 +69,17 @@
 .table thead th
 {
   background-color: #EFECEC;
+  border-top: 0;
 }
 
-.table td, .table th
+.table thead th:first-child
 {
-  border-top: 0;
-  border: 1px solid #dee2e6;
+  border-radius: 10px 0 0 0;
+}
+
+.table thead th:last-child
+{
+  border-radius: 0 10px 0 0;
 }
 
 .tableBtn
