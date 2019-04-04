@@ -158,6 +158,13 @@ h3
 {
   background-color: #A2E147 !important;
   border-color: #A2E147 !important;
+  transition: .2s;
+}
+
+.btn-primary:hover
+{
+  background-color: #85c12e !important;
+  border-color: #85c12e !important;
 }
 
 .row

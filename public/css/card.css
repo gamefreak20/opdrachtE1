@@ -55,3 +55,44 @@
 {
   margin-bottom: 1rem;
 }
+
+.table-striped tbody tr:nth-of-type(even)
+{
+  background-color: #EFECEC;
+}
+
+.table-striped tbody tr:nth-of-type(odd)
+{
+  background-color: #F5F5F5;
+}
+
+.table thead th
+{
+  background-color: #EFECEC;
+}
+
+.table td, .table th
+{
+  border-top: 0;
+  border: 1px solid #dee2e6;
+}
+
+.tableBtn
+{
+  width: 30px;
+  fill: #A2E147;
+  margin: 10px auto;
+  display: block;
+  position: relative;
+  transition: .2s;
+}
+
+.tableBtn:hover
+{
+  width: 40px;
+}
+
+.delete
+{
+  fill: #AC1212;
+}
