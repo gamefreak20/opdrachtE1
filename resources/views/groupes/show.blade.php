@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('javascript')
-
+    <script src="js/groupes.js"></script>
 @endsection
 
 @section('css')
@@ -11,7 +11,7 @@
 
 @section('content')
 
-    @php($counter = 0)
+    @php($counter = 1)
 
     <table border="1">
         <thead>
@@ -23,22 +23,17 @@
         </thead>
         <tbody>
         @foreach($groupe as $group)
-            @php($counter++)
             <tr>
-                <td>{{$counter}}</td>
-                <td>{{\App\Student::find($group['student_id'])['name']}}</td>
+                <td>{{$counter++}}</td>
+                <td>{{\App\Student::find($group->student_id)['name']}}</td>
                 <td>
-                    {{--<button onclick="window.location='{{route('groupe.deleteStudent', $group['id'])}}';">Voeg een student toe</button>--}}
-                    {{--{!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe['groupe_id']], 'class' => '']) !!}--}}
-
-                    {{--<button type="submit">Verwijder student uit groep</button>--}}
-
-                    {{--{!! Form::close() !!}--}}
+                    <button onclick="window.location='{{route('groupe.deleteStudent', $group->id)}}';">Verwijder student uit groep</button>
                 </td>
             </tr>
         @endforeach
         </tbody>
 
     </table>
+
 
 @endsection

@@ -16,44 +16,10 @@ class GroupesController extends Controller
      */
     public function index()
     {
-        $newGroupe = array();
-        $output = array();
-        $times = 0;
-
-//        $groupes = Groupe::all()->orderBy('groupe_id', 'desc');
-
         $groupes = DB::table('groupes')
             ->orderBy('groupe_id', 'desc')
             ->get();
-        foreach ($groupes as $groupe) {
-            foreach ($groupe as $group) {
-                $times++;
-                switch ($times) {
-                    case 1:
-                        $newGroupe['id'] = $group;
-                        break;
-                    case 2:
-                        $newGroupe['student_id'] = $group;
-                        break;
-                    case 3:
-                        $newGroupe['groupe_id'] = $group;
-                        break;
-                    case 4:
-                        $newGroupe['created_at'] = $group;
-                        break;
-                    case 5:
-                        $newGroupe['updated_at'] = $group;
-                        break;
 
-                        default:
-                        $times = 0;
-                }
-            }
-            $times = 0;
-            $output[] = $newGroupe;
-            $newGroupe = array();
-        }
-        $groupes = $output;
         return view('groupes.index', compact(['groupes']));
     }
 
@@ -105,8 +71,9 @@ class GroupesController extends Controller
      */
     public function edit($id)
     {
+        $groupe_id = $id;
         $groupe = Groupe::where('groupe_id', $id)->get();
-        return view('groupes.update', compact('groupe'));
+        return view('groupes.update', compact(['groupe', 'groupe_id']));
     }
 
     /**
@@ -147,9 +114,15 @@ class GroupesController extends Controller
         return $id;
     }
 
-    public function searchStudent($id)
+    public function searchStudent($name)
     {
-        $students = Student::where('name', $id)->get();
+        $students = Student::where('name', 'like', '%'.$name.'%')->get();
         return $students;
+    }
+
+    public function addStudentToGroupe(Request $request)
+    {
+        Groupe::creating($request);
+        return $request;
     }
 }

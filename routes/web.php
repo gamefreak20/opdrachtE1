@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::resource('/groupe', 'GroupesController');
     Route::resource('/student', 'StudentsController');
 
-    Route::get('/groupe/deleteStudent/{id}', 'GroupesController@deleteStudent');
-    Route::post('/searchStudent', 'GroupesController@searchStudent');
+    Route::get('/groupe/deleteStudent/{id}', 'GroupesController@deleteStudent')->name('groupe.deleteStudent');
+    Route::get('/searchStudent/{name}', 'GroupesController@searchStudent')->name('student.search');
+    Route::post('/groupe/addStudentToGroupe', 'GroupesController@addStudentToGroupe')->name('groupe.addStudentToGroupe');
 });
