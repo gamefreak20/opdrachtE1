@@ -33,6 +33,8 @@ function addStudent2(id)
         output += "<tr id='studentId"+data.id+"'><td>";
         output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
 
+        studentIds.push(id);
+
         var newStudentIds = JSON.stringify(studentIds);
 
         $("#selectedStudents").html(output);
