@@ -1,21 +1,22 @@
-
-
 $( document ).ready(function() {
 
     $( "#studentNameSearch" ).keyup(function() {
         var studentName = $("#studentNameSearch").val();
 
         if (studentName == '') {
-            $("#searchStudentNameField").html("");
+            $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
         } else {
             $.getJSON( "../../searchStudent/"+studentName, function( data ) {
                 var output = "";
                 $.each( data, function( key, value ) {
-                    output += "<tr><td>";
-                    output += value.name+"</td><td><button type='button' onclick='addStudent2("+value.id+")'>voeg toe</button></td></tr>";
+                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+")'>"+value.name+"</button></p>";
                 });
-
-                $("#searchStudentNameField").html(output);
+                if (output == "") {
+                  $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
+                }
+                else {
+                  $("#searchStudentNameField").html(output);
+                }
             });
         }
 
@@ -30,8 +31,8 @@ function addStudent2(id)
 {
     $.getJSON( "../../searchStudentById/"+id, function( data ) {
 
-        output += "<tr><td>";
-        output += data.name+"</td><td><button type='button' onclick='remove("+id+")'>verwijder</button></td></tr>";
+        output = $("#selectedStudents").html();
+        output += data.name + "<button type='button' onclick='remove("+id+")'>verwijder</button>";
 
         studentIds.push(data.id);
 
