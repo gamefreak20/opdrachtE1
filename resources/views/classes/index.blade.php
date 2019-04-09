@@ -38,6 +38,6 @@
         </tbody>
     </table>
 
-    <button onclick="window.location='{{route('student.create')}}';">Maak aan</button>
+    <button onclick="window.location='{{route('classes.create')}}';">Maak aan</button>
 
 @endsection

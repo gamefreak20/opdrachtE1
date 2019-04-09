@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('javascript')
-
+    <script src="{{resource('js/classes.js')}}"></script>
 @endsection
 
 @section('css')
