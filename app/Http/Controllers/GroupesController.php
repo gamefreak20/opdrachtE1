@@ -112,12 +112,6 @@ class GroupesController extends Controller
         return $id;
     }
 
-    public function searchStudent($name)
-    {
-        $students = Student::where('name', 'like', '%'.$name.'%')->get();
-        return $students;
-    }
-
     public function addStudentToGroupe(Request $request)
     {
         DB::select('INSERT INTO `groupes`(`student_id`, `groupe_id`) VALUES (?,?)', [$request->student_id, $request->groupe_id]);

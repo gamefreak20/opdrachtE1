@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classe;
+use App\Student;
 use Illuminate\Http\Request;
 
 class ClassesController extends Controller
@@ -55,7 +56,7 @@ class ClassesController extends Controller
     {
 //        $class = Classe::find(1)->student->all();
         $class = Classe::findOrFail($id);
-        $students = $class->students();
+        $students = $class->student();
         return view('classes.show', compact(['class', 'students']));
     }
 
@@ -67,7 +68,7 @@ class ClassesController extends Controller
      */
     public function edit($id)
     {
-        $class = Student::findOrFail($id);
+        $class = Classe::findOrFail($id);
         return view('classes.update', compact(['class']));
     }
 

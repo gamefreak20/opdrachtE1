@@ -109,4 +109,15 @@ class StudentsController extends Controller
 
         return redirect(route('student.index'));
     }
+
+    public function searchStudent($name)
+    {
+        $students = Student::where('name', 'like', '%'.$name.'%')->get();
+        return $students;
+    }
+
+    public function searchStudentById($id)
+    {
+        return Student::find($id);
+    }
 }

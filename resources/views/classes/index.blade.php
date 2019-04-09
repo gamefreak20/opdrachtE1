@@ -104,5 +104,9 @@
 </div>
 
 
+<<<<<<< HEAD
+=======
+    <button onclick="window.location='{{route('classes.create')}}';">Maak aan</button>
+>>>>>>> 6b4b2828a29be9f237ce804bb3ed1efd5bfc0e4c
 
 @endsection
