@@ -31,7 +31,7 @@ function addStudent2(id)
     $.getJSON( "../../searchStudentById/"+id, function( data ) {
 
         output += "<tr><td>";
-        output += data.name+"</td></tr>";
+        output += data.name+"</td><td><button type='button' onclick='remove("+id+")'>verwijder</button></td></tr>";
 
         studentIds.push(data.id);
 
