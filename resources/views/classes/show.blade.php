@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('javascript')
-    <script src="{{resource('js/classes.js')}}"></script>
+    <script src="{{asset('js/classes.js')}}"></script>
 @endsection
 
 @section('css')
@@ -14,18 +14,17 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Studenten nummer</th>
                 <th>Naam</th>
             </tr>
         </thead>
         <tbody>
-        @php(var_dump($students))
-            {{--@for($i = 0; $i < count($students); $i++)--}}
-
-                {{--<tr>--}}
-                    {{--<td>{{$students->name}}</td>--}}
-                {{--</tr>--}}
-
-            {{--@endfor--}}
+            @foreach($students as $student)
+                <tr>
+                    <td>{{$student->student_number}}</td>
+                    <td>{{$student->name}}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 

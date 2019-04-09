@@ -13,6 +13,6 @@ class Classe extends Model
 
     public function student()
     {
-        return $this->belongsToMany( 'App\Student', 'classe_student', 'classe_id', 'student_id' );
+        return $this->belongsToMany( 'App\Student', 'classe_student', 'student_id', 'classe_id' );
     }
 }

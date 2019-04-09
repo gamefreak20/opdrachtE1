@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classe;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClassesController extends Controller
 {
@@ -56,7 +57,7 @@ class ClassesController extends Controller
     {
 //        $class = Classe::find(1)->student->all();
         $class = Classe::findOrFail($id);
-        $students = $class->student();
+        $students = $class->student;
         return view('classes.show', compact(['class', 'students']));
     }
 
@@ -83,7 +84,18 @@ class ClassesController extends Controller
     {
         $input = $request->validate([
             'name' => 'required|max:191',
+            'studentIdsSelected' => 'required',
         ]);
+
+        $studentIds = json_decode($input['studentIdsSelected']);
+
+        DB::select('DELETE FROM `classe_student` WHERE `classe_id` = ?', [$id]);
+
+        foreach ($studentIds as $studentId) {
+            $student = Student::findOrFail($studentId);
+
+            $student->classe()->attach([$id]);
+        }
 
         $class = Classe::findOrFail($id);
         $class->update($input);
