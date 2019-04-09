@@ -23,4 +23,9 @@ class Student extends Model
     {
         return $this->belongsToMany( 'App\Classe', 'classe_student', 'student_id', 'classe_id' );
     }
+
+    public function groupes()
+    {
+        return $this->belongsToMany( 'App\Classe', 'groupe_student', 'student_id', 'groupe_id' );
+    }
 }
