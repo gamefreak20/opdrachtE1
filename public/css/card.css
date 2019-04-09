@@ -122,3 +122,11 @@
 {
   color: #AC1212 !important;
 }
+
+.searchArea
+{
+  display: inline;
+  position: relative;
+  top: 6px;
+  margin-left: 10px;
+}
