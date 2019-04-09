@@ -16,24 +16,23 @@
     <table border="1">
         <thead>
         <tr>
-            <th>#</th>
             <th>naam</th>
-            <th>tools</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($groupe as $group)
+        @foreach($groupe->student as $group)
             <tr>
-                <td>{{$counter++}}</td>
-                <td>{{\App\Student::find($group->student_id)['name']}}</td>
                 <td>
-                    <button onclick="window.location='{{route('groupe.deleteStudent', $group->id)}}';">Verwijder student uit groep</button>
+                    {{$group->name}}
                 </td>
             </tr>
         @endforeach
         </tbody>
 
     </table>
+
+    Ik weet niet of dit moet komen
+
 
 
 @endsection

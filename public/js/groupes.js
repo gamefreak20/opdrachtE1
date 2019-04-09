@@ -1,86 +1,54 @@
 $( document ).ready(function() {
-    $( "#searchStudent" ).keyup(function() {
 
-        var searchName = $("#searchStudent").val();
+    $( "#studentNameSearch" ).keyup(function() {
+        var studentName = $("#studentNameSearch").val();
 
-        if (searchName == '') {
-            $("#showStudents").html("");
+        if (studentName == '') {
+            $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
         } else {
-            $.getJSON( "../../searchStudent/"+searchName, function( data ) {
+            $.getJSON( "../../searchStudent/"+studentName, function( data ) {
                 var output = "";
                 $.each( data, function( key, value ) {
-                    output += "<tr><td>";
-                    output += value.name+"</td><td><button onclick='addStudent("+value.id+")'>voeg toe</button></td></tr>";
+                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+")'>"+value.name+"</button></p>";
                 });
-
-                $("#showStudents").html(output);
+                if (output == "") {
+                    $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
+                }
+                else {
+                    $("#searchStudentNameField").html(output);
+                }
             });
         }
+
     });
-    $( "#searchStudent2" ).keyup(function() {
 
-        var searchName = $("#searchStudent2").val();
-
-        if (searchName == '') {
-            $("#showStudents").html("");
-        } else {
-            $.getJSON( "../../searchStudent/"+searchName, function( data ) {
-                var output = "";
-                $.each( data, function( key, value ) {
-                    output += "<tr><td>";
-                    output += value.name+"</td><td><button onclick='addStudent2("+value.id+")'>voeg toe</button></td></tr>";
-                });
-
-                $("#showStudents").html(output);
-            });
-        }
-    });
 });
 
-function addStudent(id)
-{
-    var groupe = $("#groupe_id").val();
-    $.ajax({
-        type: 'post',
-        url: '../addStudentToGroupe',
-        data: {
-            '_token': $('input[name=_token]').val(),
-            'student_id': id,
-            'groupe_id': groupe,
-        },
-        success: function(data) {
-            var output;
-
-            for (let i = 0; i < data.lenght; i++) {
-                output += data[i]+" ";
-            }
-
-            $("#showStudents").html(output);
-
-            window.location="../";
-        },
-    });
-}
+var output;
+var studentIds = [];
 
 function addStudent2(id)
 {
-    $.ajax({
-        type: 'post',
-        url: 'public/createGroupe',
-        data: {
-            '_token': $('input[name=_token]').val(),
-            'student_id': id,
-        },
-        success: function(data) {
-            var output;
+    $.getJSON( "../../searchStudentById/"+id, function( data ) {
+        output = $("#selectedStudents").html();
+        output += "<tr id='studentId"+data.id+"'><td>";
+        output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
 
-            for (let i = 0; i < data.lenght; i++) {
-                output += data[i]+" ";
-            }
+        studentIds.push(data.id);
 
-            $("#showStudents").html(output);
+        var newStudentIds = JSON.stringify(studentIds);
 
-            window.location="../";
-        },
+        $("#selectedStudents").html(output);
+        $("#studentIdsSelected").val(newStudentIds);
     });
+}
+
+function remove(id)
+{
+    const index = studentIds.indexOf(id);
+    studentIds.splice(index, 1);
+    var newStudentIds = JSON.stringify(studentIds);
+    $("#studentIdsSelected").val(newStudentIds);
+
+    $("#studentId"+id).remove();
 }

@@ -12,11 +12,9 @@
 @section('content')
 
     {{-- Voeg een student toe, zoeken --}}
-    @csrf
-    <input type="hidden" name="groupe_id" value="{{$groupe_id}}" id="groupe_id">
-    Studenten naam: <input type="text" id="searchStudent"><br>
-    <table id="showStudents">
-
-    </table>
+    <input type="text" id="studentNameSearch">
+    <div id="searchStudentNameField"></div>
+    <div id="selectedStudents"></div>
+    <input type="hidden" id="studentIdsSelected">
 
 @endsection

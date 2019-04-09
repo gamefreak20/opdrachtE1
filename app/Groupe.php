@@ -8,17 +8,17 @@ class Groupe extends Model
 {
 
     protected $fillable = [
-        'student_id',
-        'groupe_id'
+        'assignment',
+        'grade'
     ];
-
-    public function Student()
-    {
-        return $this->belongsTo('App\Student');
-    }
 
     public function assignment()
     {
         return $this->belongsToMany( 'App\Assignment', 'assignment_groupe', 'groupe_id', 'assignment_id' );
+    }
+
+    public function student()
+    {
+        return $this->belongsToMany('App\Student');
     }
 }

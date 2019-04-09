@@ -16,7 +16,8 @@ class GroupesController extends Controller
      */
     public function index()
     {
-        $groupes = DB::table('groupes')->orderBy('groupe_id', 'desc')->get();
+//        $groupes = DB::table('groupes')->orderBy('groupe_id', 'desc')->get();
+        $groupes = Groupe::all();
 
         return view('groupes.index', compact(['groupes']));
     }
@@ -57,7 +58,7 @@ class GroupesController extends Controller
      */
     public function show($id)
     {
-        $groupe = Groupe::where('groupe_id', $id)->get();
+        $groupe = Groupe::findOrFail($id);
         return view('groupes.show', compact('groupe'));
     }
 
@@ -69,9 +70,8 @@ class GroupesController extends Controller
      */
     public function edit($id)
     {
-        $groupe_id = $id;
-        $groupe = Groupe::where('groupe_id', $id)->get();
-        return view('groupes.update', compact(['groupe', 'groupe_id']));
+        $groupe = Groupe::findOrFail($id);
+        return view('groupes.update', compact(['groupe']));
     }
 
     /**

@@ -15,8 +15,11 @@ class CreateGroupesTable extends Migration
     {
         Schema::create('groupes', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
-            $table->integer('student_id');
-            $table->integer('groupe_id');
+            $table->string('assignment');
+            $table->double('grade');
+            $table->date('startDate');
+            $table->string('totalHours');
+            $table->date('endDate');
             $table->timestamps();
         });
     }
