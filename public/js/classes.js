@@ -29,16 +29,23 @@ var studentIds = [];
 function addStudent2(id)
 {
     $.getJSON( "../../searchStudentById/"+id, function( data ) {
-
-        output += "<tr><td>";
-        output += data.name+"</td><td><button type='button' onclick='remove("+id+")'>verwijder</button></td></tr>";
-
-        studentIds.push(data.id);
+        output = $("#selectedStudents").html();
+        output += "<tr id='studentId"+data.id+"'><td>";
+        output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
 
         var newStudentIds = JSON.stringify(studentIds);
-        console.log(newStudentIds);
 
         $("#selectedStudents").html(output);
         $("#studentIdsSelected").val(newStudentIds);
     });
+}
+
+function remove(id)
+{
+    const index = studentIds.indexOf(id);
+    studentIds.splice(index, 1);
+    var newStudentIds = JSON.stringify(studentIds);
+    $("#studentIdsSelected").val(newStudentIds);
+
+    $("#studentId"+id).remove();
 }

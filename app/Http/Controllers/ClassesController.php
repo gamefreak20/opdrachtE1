@@ -56,7 +56,7 @@ class ClassesController extends Controller
     {
 //        $class = Classe::find(1)->student->all();
         $class = Classe::findOrFail($id);
-        $students = $class->student();
+        $students = $class->student;
         return view('classes.show', compact(['class', 'students']));
     }
 
