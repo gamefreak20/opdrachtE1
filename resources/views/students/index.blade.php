@@ -16,6 +16,9 @@
     <div class="card">
       <div class="card-header">
         Studenten
+        <form class="form-inline my-2 my-lg-0 searchArea">
+         <input class="form-control mr-sm-2" type="search" placeholder="Zoek student(en)..." aria-label="searchStudent">
+       </form>
       </div>
       <div class="card-body">
         <table class="table table-striped">

@@ -1,0 +1,18 @@
+.card-text
+{
+  color: black;
+  font-size: 15px;
+}
+
+.card-header
+{
+  text-align: center;
+}
+
+.card-note
+{
+  box-shadow: none;
+  background-color: #F5F5F5;
+  margin: 100px 0px;
+  margin-top: 0px;
+}
