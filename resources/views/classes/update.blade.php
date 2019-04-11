@@ -29,17 +29,15 @@
             <div class="form-group col-md-8">
               Klas naam: <input class="form-control" type="text" name="name" value="{{$class->name}}">
             </div>
-            <div class="form-group col-md-4">
-              <button class="btn btn-primary" type="submit">Verander</button>
-            </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-8">
               Voeg student toe aan klas: <input class="form-control" type="text" name="studentName" id="studentNameSearch" placeholder="student toevoegen...">
+              <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
             </div>
           </div>
-          <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
           <input type="hidden" name="studentIdsSelected" id="studentIdsSelected">
+          <button class="btn btn-primary" id="change" type="submit">Verander</button>
           {!! Form::close() !!}
         </blockquote>
         <table class="table table-striped updateTable">
@@ -47,13 +45,10 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Studenten van klas</th>
+              <th scope="col">Acties</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td><div id="selectedStudents"></div></td>
-            </tr>
+          <tbody id="selectedStudents">
           </tbody>
         </table>
       </div>
