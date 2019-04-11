@@ -9,6 +9,7 @@
         {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>--}}
 
+        <link rel="icon" type="image/ico" sizes="32x32" href="{{asset('images/header/favicon.ico')}}"/>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700" rel="stylesheet">
         <link href="{{asset('css/style.css')}}" rel="stylesheet">
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
