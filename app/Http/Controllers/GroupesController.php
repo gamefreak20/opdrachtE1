@@ -70,15 +70,13 @@ class GroupesController extends Controller
             }
         }
 
-//        for ($i = 1; $i < $input['totalHours']/4; $i++) {
-//            $addDays .= ($i*2);
-//        }
+        $input['grade'] = 0;
 
-        date('Y-m-d', strtotime("+".$addDays." days"));
+        $input['endDate'] = date('Y-m-d', strtotime("+".$addDays." days"));
+        $input['startDate'] = date('Y-m-d');
 
         Groupe::create($input);
-
-        return redirect(route('groupes.index'));
+        return redirect(route('groupe.index'));
     }
 
     /**
@@ -118,9 +116,10 @@ class GroupesController extends Controller
     {
         $input = $request->validate([
             'grade' => 'required',
-            'comment' => 'required',
             'studentIds' => 'required',
         ]);
+
+        $input['comment'] = $request['comment'];
 
         $studentIds = json_decode($input['studentIds']);
 

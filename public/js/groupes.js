@@ -31,7 +31,7 @@ $( document ).ready(function() {
             $.getJSON( "../searchStudent/"+studentName, function( data ) {
                 var output = "";
                 $.each( data, function( key, value ) {
-                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+")'>"+value.name+"</button></p>";
+                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+", 2)'>"+value.name+"</button></p>";
                 });
                 if (output == "") {
                     $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
@@ -49,20 +49,35 @@ $( document ).ready(function() {
 var output;
 var studentIds = [];
 
-function addStudent2(id)
+function addStudent2(id, create = 1)
 {
-    $.getJSON( "../../searchStudentById/"+id, function( data ) {
-        output = $("#selectedStudents").html();
-        output += "<tr id='studentId"+data.id+"'><td>";
-        output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
+    if (create == 2) {
+        $.getJSON( "../searchStudentById/"+id, function( data ) {
+            output = $("#selectedStudents").html();
+            output += "<tr id='studentId"+data.id+"'><td>";
+            output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
 
-        studentIds.push(data.id);
+            studentIds.push(data.id);
 
-        var newStudentIds = JSON.stringify(studentIds);
+            var newStudentIds = JSON.stringify(studentIds);
 
-        $("#selectedStudents").html(output);
-        $("#studentIdsSelected").val(newStudentIds);
-    });
+            $("#selectedStudents").html(output);
+            $("#studentIdsSelected").val(newStudentIds);
+        });
+    } else {
+        $.getJSON( "../../searchStudentById/"+id, function( data ) {
+            output = $("#selectedStudents").html();
+            output += "<tr id='studentId"+data.id+"'><td>";
+            output += data.name+"</td><td><button type='button' onclick='remove("+data.id+")'>verwijder</button></td></tr>";
+
+            studentIds.push(data.id);
+
+            var newStudentIds = JSON.stringify(studentIds);
+
+            $("#selectedStudents").html(output);
+            $("#studentIdsSelected").val(newStudentIds);
+        });
+    }
 }
 
 function remove(id)

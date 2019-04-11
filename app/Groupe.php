@@ -11,6 +11,9 @@ class Groupe extends Model
         'assignment',
         'grade',
         'comment',
+        'totalHours',
+        'startDate',
+        'endDate'
     ];
 
     public function assignment()
