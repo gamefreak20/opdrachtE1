@@ -14,17 +14,12 @@ class Student extends Model
         'last_name',
     ];
 
-    public function groupe()
-    {
-        return $this->hasMany('App\Groupe');
-    }
-
     public function classe()
     {
         return $this->belongsToMany( 'App\Classe', 'classe_student', 'student_id', 'classe_id' );
     }
 
-    public function groupes()
+    public function groupe()
     {
         return $this->belongsToMany( 'App\Classe', 'groupe_student', 'student_id', 'groupe_id' );
     }

@@ -16,8 +16,7 @@ class GroupesController extends Controller
      */
     public function index()
     {
-//        $groupes = DB::table('groupes')->orderBy('groupe_id', 'desc')->get();
-        $groupes = Groupe::all();
+        $groupes = Groupe::paginate(10);
 
         return view('groupes.index', compact(['groupes']));
     }
@@ -85,14 +84,25 @@ class GroupesController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->validate([
-            'student_id' => 'required|numeric',
-            'groupe_id' => 'required|numeric',
+            'grade' => 'required',
+            'comment' => 'required',
+            'studentIds' => 'required',
         ]);
+
+        $studentIds = json_decode($input['studentIds']);
+
+        DB::select('DELETE FROM `groupe_student` WHERE `groupe_id` = ?', [$id]);
+
+        foreach ($studentIds as $studentId) {
+            $student = Student::findOrFail($studentId);
+
+            $student->groupe()->attach([$id]);
+        }
 
         $groupe = Groupe::findOrFail($id);
         $groupe->update($input);
-
-        return redirect(route('groupes.index'));
+        return $input;
+//        return redirect(route('groupes.index'));
     }
 
     /**

@@ -17,6 +17,7 @@ class CreateGroupesTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('assignment');
             $table->double('grade');
+            $table->text('comment')->nullable();
             $table->date('startDate');
             $table->string('totalHours');
             $table->date('endDate');

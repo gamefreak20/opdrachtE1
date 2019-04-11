@@ -11,6 +11,9 @@
 
 @section('content')
 
+
+    Zoek naar een groep: <input type="text" name="searchGroupe" id="searchGroupe"><br>
+
     <table border="1">
         <thead>
             <tr>
@@ -27,6 +30,9 @@
                     Cijfer
                 </th>
                 <th>
+                    Commentaar
+                </th>
+                <th>
                     Start datum
                 </th>
                 <th>
@@ -40,7 +46,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="searchGroupeOutput">
             @foreach($groupes as $groupe)
                 <tr>
                     <td>{{$groupe->id}}</td>
@@ -56,6 +62,7 @@
                     <td><a href="#">{{$groupe->assignment}}</a></td>
                     @php($groupe->grade == 0 ? $grade = 'Nog bezig' : $grade = $groupe->grade)
                     <td>{{$grade}}</td>
+                    <td>{{$groupe->comment}}</td>
                     <td>{{$groupe->startDate}}</td>
                     <td>{{$groupe->totalHours}}</td>
                     <td>{{$groupe->endDate}}</td>
