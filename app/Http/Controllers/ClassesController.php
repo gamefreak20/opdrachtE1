@@ -55,7 +55,6 @@ class ClassesController extends Controller
      */
     public function show($id)
     {
-//        $class = Classe::find(1)->student->all();
         $class = Classe::findOrFail($id);
         $students = $class->student;
         return view('classes.show', compact(['class', 'students']));
@@ -99,8 +98,8 @@ class ClassesController extends Controller
 
         $class = Classe::findOrFail($id);
         $class->update($input);
-
-        return redirect(route('classes.index'));
+        return $input;
+//        return redirect(route('classes.index'));
 
     }
 
