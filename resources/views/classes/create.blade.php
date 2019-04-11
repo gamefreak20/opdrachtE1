@@ -21,7 +21,7 @@
       <div class="card-body">
         <blockquote class="blockquote mb-0">
           <div class="form-row">
-            <div class="form-group col">
+            <div class="form-group col-md">
               <input class="form-control" type="text" name="name" placeholder="Klas naam...">
             </div>
           </div>
