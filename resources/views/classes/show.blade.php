@@ -25,16 +25,16 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Studentnummer</th>
               <th scope="col">Naam</th>
+              <th scope="col">Studentnummer</th>
             </tr>
           </thead>
           <tbody>
             @foreach($students as $student)
             <tr>
-              <th scope="row">1</th>
-              <td>{{$student->student_number}}</td>
-              <td>{{$student->name}}</td>
+              <th scope="row" class="center">1</th>
+              <td class="center">{{$student->name}} {{$student->insertion}} {{$student->last_name}}</td>
+              <td class="center">{{$student->student_number}}</td>
             </tr>
             @endforeach
           </tbody>
