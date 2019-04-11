@@ -13,9 +13,9 @@
 
     {!! Form::open(['method'=>'PATCH', 'action'=>['GroupesController@update', $groupe->id], 'class' => '']) !!}
 
-        Cijfer: <input type="number" min="0" max="10" name="grade" placeholder="{{$groupe->grade}}" step=".01"><br>
+        Cijfer: <input type="number" min="0" max="10" name="grade" value="{{$groupe->grade}}" step=".01"><br>
 
-        Opmerking: <textarea name="comment"></textarea><br>
+        Opmerking: <textarea name="comment">{{$groupe->comment}}</textarea><br>
 
         {{-- Voeg een student toe, zoeken --}}
         Studenten in de groep:<br>
@@ -28,4 +28,12 @@
 
     {!! Form::close() !!}
 
+@endsection
+
+@section('lateScripts')
+    @foreach($students as $student)
+        <script type="text/javascript">
+            addStudent2({{$student->id}});
+        </script>
+    @endforeach
 @endsection

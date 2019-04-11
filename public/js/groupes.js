@@ -22,6 +22,28 @@ $( document ).ready(function() {
 
     });
 
+    $( "#studentNameSearch2" ).keyup(function() {
+        var studentName = $("#studentNameSearch2").val();
+
+        if (studentName == '') {
+            $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
+        } else {
+            $.getJSON( "../searchStudent/"+studentName, function( data ) {
+                var output = "";
+                $.each( data, function( key, value ) {
+                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+")'>"+value.name+"</button></p>";
+                });
+                if (output == "") {
+                    $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
+                }
+                else {
+                    $("#searchStudentNameField").html(output);
+                }
+            });
+        }
+
+    });
+
 });
 
 var output;

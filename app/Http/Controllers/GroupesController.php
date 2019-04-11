@@ -39,10 +39,42 @@ class GroupesController extends Controller
      */
     public function store(Request $request)
     {
+        function is_decimal( $val )
+        {
+            return is_numeric( $val ) && floor( $val ) != $val;
+        }
+
         $input = $request->validate([
-            'student_id' => 'required|numeric',
-            'groupe_id' => 'required|numeric',
+            'assignment' => 'required|numeric',
+            'totalHours' => 'required|numeric',
+            'studentIds' => 'required',
         ]);
+
+        $addDays = 0;
+
+        if ($input['totalHours'] >= 4) {
+            $houresMinus4 = $input['totalHours']/4;
+            if (is_decimal($houresMinus4)) {
+                $weeks = (int)$houresMinus4;
+
+                $days = ($houresMinus4 - $weeks) * 4;
+
+                $addDays = ($weeks * 7) + $days;
+
+            } else {
+                $addDays = $houresMinus4*7;
+            }
+        } else {
+            if ($input['totalHours'] == 2) {
+                $addDays = 1;
+            }
+        }
+
+//        for ($i = 1; $i < $input['totalHours']/4; $i++) {
+//            $addDays .= ($i*2);
+//        }
+
+        date('Y-m-d', strtotime("+".$addDays." days"));
 
         Groupe::create($input);
 
@@ -71,7 +103,8 @@ class GroupesController extends Controller
     public function edit($id)
     {
         $groupe = Groupe::findOrFail($id);
-        return view('groupes.update', compact(['groupe']));
+        $students = $groupe->student;
+        return view('groupes.update', compact(['groupe', 'students']));
     }
 
     /**
@@ -101,8 +134,7 @@ class GroupesController extends Controller
 
         $groupe = Groupe::findOrFail($id);
         $groupe->update($input);
-        return $input;
-//        return redirect(route('groupes.index'));
+        return redirect(route('groupe.index'));
     }
 
     /**
