@@ -39,14 +39,52 @@ class GroupesController extends Controller
      */
     public function store(Request $request)
     {
+        function is_decimal( $val )
+        {
+            return is_numeric( $val ) && floor( $val ) != $val;
+        }
+
         $input = $request->validate([
-            'student_id' => 'required|numeric',
-            'groupe_id' => 'required|numeric',
+            'assignment' => 'required|numeric',
+            'totalHours' => 'required|numeric',
+            'studentIds' => 'required',
         ]);
 
-        Groupe::create($input);
+        $addDays = 0;
 
-        return redirect(route('groupes.index'));
+        if ($input['totalHours'] >= 4) {
+            $houresMinus4 = $input['totalHours']/4;
+            if (is_decimal($houresMinus4)) {
+                $weeks = (int)$houresMinus4;
+
+                $days = ($houresMinus4 - $weeks) * 4;
+
+                $addDays = ($weeks * 7) + $days;
+
+            } else {
+                $addDays = $houresMinus4*7;
+            }
+        } else {
+            if ($input['totalHours'] == 2) {
+                $addDays = 1;
+            }
+        }
+
+        $input['grade'] = 0;
+
+        $input['endDate'] = date('Y-m-d', strtotime("+".$addDays." days"));
+        $input['startDate'] = date('Y-m-d');
+
+        $groupe = Groupe::create($input);
+
+        $studentIds = json_decode($input['studentIds']);
+
+        foreach ($studentIds as $studentId) {
+            $student = Student::findOrFail($studentId);
+
+            $student->groupe()->attach([$groupe->id]);
+        }
+        return redirect(route('groupe.index'));
     }
 
     /**
@@ -71,7 +109,8 @@ class GroupesController extends Controller
     public function edit($id)
     {
         $groupe = Groupe::findOrFail($id);
-        return view('groupes.update', compact(['groupe']));
+        $students = $groupe->student;
+        return view('groupes.update', compact(['groupe', 'students']));
     }
 
     /**
@@ -85,9 +124,10 @@ class GroupesController extends Controller
     {
         $input = $request->validate([
             'grade' => 'required',
-            'comment' => 'required',
             'studentIds' => 'required',
         ]);
+
+        $input['comment'] = $request['comment'];
 
         $studentIds = json_decode($input['studentIds']);
 
@@ -101,8 +141,7 @@ class GroupesController extends Controller
 
         $groupe = Groupe::findOrFail($id);
         $groupe->update($input);
-        return $input;
-//        return redirect(route('groupes.index'));
+        return redirect(route('groupe.index'));
     }
 
     /**
@@ -113,7 +152,7 @@ class GroupesController extends Controller
      */
     public function destroy($id)
     {
-        $groupe = Groupe::where('groupe_id', $id)->delete();
+        $groupe = Groupe::find($id)->delete();
         return redirect(route('groupe.index'));
     }
 

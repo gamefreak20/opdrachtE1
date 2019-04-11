@@ -82,5 +82,7 @@
 
       @yield('javascript')
 
+        @yield('lateScripts');
+
   </body>
   </html>

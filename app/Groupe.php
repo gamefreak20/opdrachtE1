@@ -9,7 +9,11 @@ class Groupe extends Model
 
     protected $fillable = [
         'assignment',
-        'grade'
+        'grade',
+        'comment',
+        'totalHours',
+        'startDate',
+        'endDate'
     ];
 
     public function assignment()

@@ -98,9 +98,7 @@ class ClassesController extends Controller
 
         $class = Classe::findOrFail($id);
         $class->update($input);
-        return $input;
-//        return redirect(route('classes.index'));
-
+        return redirect(route('classes.index'));
     }
 
     /**
