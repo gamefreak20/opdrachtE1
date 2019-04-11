@@ -47,20 +47,19 @@
                     <td>
                         @foreach ($groupe->student as $student)
                             @if ($loop->last)
-                                {{$student->name}}
+                                <a href="#">{{$student->name}}</a>
                             @else
-                                {{$student->name}},
+                                <a href="#">{{$student->name}}</a>,
                             @endif
                         @endforeach
                     </td>
-                    <td>{{$groupe->assignment}}</td>
+                    <td><a href="#">{{$groupe->assignment}}</a></td>
                     @php($groupe->grade == 0 ? $grade = 'Nog bezig' : $grade = $groupe->grade)
                     <td>{{$grade}}</td>
                     <td>{{$groupe->startDate}}</td>
                     <td>{{$groupe->totalHours}}</td>
                     <td>{{$groupe->endDate}}</td>
                     <td>
-                        <button onclick="location.href = '{{route('groupe.show', $groupe->id)}}'">Detail</button>
                         <svg class="tableBtn" onclick="window.location='{{route('groupe.edit', $groupe->id)}}'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 20 18" style="enable-background:new 0 0 20 18;" xml:space="preserve"><path id="Shape" d="M1,14.2V18h3.8l11-11.1L12,3.1L1,14.2z M18.7,4c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8 L17,5.9L18.7,4z"/></svg>
                         {!! Form::open(['method'=>'DELETE', 'action'=>['GroupesController@destroy', $groupe->id], 'class' => '', 'id' => 'form']) !!}

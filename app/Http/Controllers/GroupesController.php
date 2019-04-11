@@ -58,8 +58,9 @@ class GroupesController extends Controller
      */
     public function show($id)
     {
-        $groupe = Groupe::findOrFail($id);
-        return view('groupes.show', compact('groupe'));
+        abort(404);
+//        $groupe = Groupe::findOrFail($id);
+//        return view('groupes.show', compact('groupe'));
     }
 
     /**
