@@ -75,7 +75,15 @@ class GroupesController extends Controller
         $input['endDate'] = date('Y-m-d', strtotime("+".$addDays." days"));
         $input['startDate'] = date('Y-m-d');
 
-        Groupe::create($input);
+        $groupe = Groupe::create($input);
+
+        $studentIds = json_decode($input['studentIds']);
+
+        foreach ($studentIds as $studentId) {
+            $student = Student::findOrFail($studentId);
+
+            $student->groupe()->attach([$groupe->id]);
+        }
         return redirect(route('groupe.index'));
     }
 
@@ -144,7 +152,7 @@ class GroupesController extends Controller
      */
     public function destroy($id)
     {
-        $groupe = Groupe::where('groupe_id', $id)->delete();
+        $groupe = Groupe::find($id)->delete();
         return redirect(route('groupe.index'));
     }
 
