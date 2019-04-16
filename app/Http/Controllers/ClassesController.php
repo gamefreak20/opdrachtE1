@@ -69,7 +69,8 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $class = Classe::findOrFail($id);
-        return view('classes.update', compact(['class']));
+        $students = $class->student;
+        return view('classes.update', compact(['class', 'students']));
     }
 
     /**
