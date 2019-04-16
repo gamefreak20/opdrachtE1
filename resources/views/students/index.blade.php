@@ -54,7 +54,7 @@
             @endforeach
           </tbody>
         </table>
-        <button class="btn btn-primary" onclick="window.location='{{route('student.create')}}';">Maak aan</button>
+        <button class="btn btn-primary" onclick="window.location='{{route('student.create')}}';">Maak een student aan</button>
       </div>
     </div>
   </div>

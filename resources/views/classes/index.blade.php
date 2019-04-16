@@ -52,7 +52,7 @@
                 @endforeach
               </tbody>
             </table>
-            <button class="btn btn-primary" onclick="window.location='{{route('classes.create')}}';">Maak klas aan</button>
+            <button class="btn btn-primary" onclick="window.location='{{route('classes.create')}}';">Maak een klas aan</button>
           </div>
 
           <div class="col-sm">
