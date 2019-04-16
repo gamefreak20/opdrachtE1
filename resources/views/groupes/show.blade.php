@@ -1,3 +1,4 @@
+<!-- Maybe not needed -->
 @extends('layouts.index')
 
 @section('javascript')

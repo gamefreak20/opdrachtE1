@@ -5,11 +5,31 @@
 @endsection
 
 @section('css')
-
+  <link href="{{asset('css/card.css')}}" rel="stylesheet">
 @endsection
 
-
 @section('content')
+
+<div class="row">
+  <div class="col card">
+    {!! Form::open(['method'=>'PATCH', 'action'=>['GroupesController@update', $groupe->id], 'class' => '']) !!}
+    <div class="card">
+      <div class="card-header">
+        Maak student aan
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <input class="form-control" type="number" min="0" max="10" name="grade" value="{{$groupe->grade}}" step=".01" required placeholder="Cijfer">
+          <textarea name="comment" placeholder="Opmerkingen...">{{$groupe->comment}}</textarea>
+          <input class="form-control" type="number" name="student_number" required value="{{$student->student_number}}" placeholder="Studentennummer">
+          <button type="submit" class="btn btn-primary"><p>Verander</p></button>
+        </blockquote>
+      </div>
+    </div>
+    {!! Form::close() !!}
+  </div>
+</div>
+
 
     {!! Form::open(['method'=>'PATCH', 'action'=>['GroupesController@update', $groupe->id], 'class' => '']) !!}
 
