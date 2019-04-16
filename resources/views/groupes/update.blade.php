@@ -5,7 +5,8 @@
 @endsection
 
 @section('css')
-  <link href="{{asset('css/card.css')}}" rel="stylesheet">
+<link href="{{asset('css/card.css')}}" rel="stylesheet">
+<link href="{{asset('css/class.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -15,38 +16,45 @@
     {!! Form::open(['method'=>'PATCH', 'action'=>['GroupesController@update', $groupe->id], 'class' => '']) !!}
     <div class="card">
       <div class="card-header">
-        Maak student aan
+        Verander groep
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          <input class="form-control" type="number" min="0" max="10" name="grade" value="{{$groupe->grade}}" step=".01" required placeholder="Cijfer">
-          <textarea name="comment" placeholder="Opmerkingen...">{{$groupe->comment}}</textarea>
-          <input class="form-control" type="number" name="student_number" required value="{{$student->student_number}}" placeholder="Studentennummer">
-          <button type="submit" class="btn btn-primary"><p>Verander</p></button>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              Cijfer: <input class="form-control" type="number" min="0" max="10" name="grade" value="{{$groupe->grade}}" step=".01" required placeholder="Cijfer">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              Opmerkingen: <textarea class="form-control" name="comment" placeholder="Opmerkingen...">{{$groupe->comment}}</textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              Voeg student toe aan groep: <input class="form-control" placeholder="student toevoegen aan groep..." type="text" id="studentNameSearch">
+              <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
+            </div>
+          </div>
+          <input type="hidden" name="studentIds" id="studentIdsSelected">
+          <button type="submit" id="change" class="btn btn-primary"><p>Verander</p></button>
         </blockquote>
+        {!! Form::close() !!}
+        <table class="table table-striped updateTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Studenten van klas</th>
+              <th scope="col">Acties</th>
+            </tr>
+          </thead>
+          <tbody id="selectedStudents">
+          </tbody>
+        </table>
       </div>
     </div>
-    {!! Form::close() !!}
   </div>
 </div>
-
-
-    {!! Form::open(['method'=>'PATCH', 'action'=>['GroupesController@update', $groupe->id], 'class' => '']) !!}
-
-        Cijfer: <input type="number" min="0" max="10" name="grade" value="{{$groupe->grade}}" step=".01"><br>
-
-        Opmerking: <textarea name="comment">{{$groupe->comment}}</textarea><br>
-
-        {{-- Voeg een student toe, zoeken --}}
-        Studenten in de groep:<br>
-        <input type="text" id="studentNameSearch">
-        <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
-        <div id="selectedStudents"></div>
-        <input type="hidden" name="studentIds" id="studentIdsSelected">
-
-        <input type="submit">
-
-    {!! Form::close() !!}
 
 @endsection
 
