@@ -42,9 +42,9 @@
               <td>
                 @foreach ($groupe->student as $student)
                     @if ($loop->last)
-                        <a href="#">{{$student->name}}</a>
+                        <a href="{{route('student.index')."/".$student->name}}">{{$student->name}}</a>
                     @else
-                        <a href="#">{{$student->name}}</a>,
+                        <a href="{{route('student.index')."/".$student->name}}">{{$student->name}}</a>,
                     @endif
                 @endforeach
               </td>
