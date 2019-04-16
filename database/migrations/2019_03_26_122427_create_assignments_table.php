@@ -17,6 +17,7 @@ class CreateAssignmentsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('number');
             $table->string('title');
+            $table->string('shortDescription');
             $table->integer('time');
             $table->integer('value');
             $table->string('conditional')->nullable();

@@ -12,7 +12,8 @@ class Assignment extends Model
         'title',
         'time',
         'value',
-        'conditional'
+        'conditional',
+        'shortDescription',
     ];
 
     public function groupe()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
 use Illuminate\Http\Request;
 
 class AssignmentsController extends Controller
@@ -13,7 +14,8 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        return view('assignments.index');
+        $assignments = Assignment::all();
+        return view('assignments.index', compact(['assignments']));
     }
 
     /**
@@ -34,7 +36,19 @@ class AssignmentsController extends Controller
      */
     public function store(Request $request)
     {
-        abort(404);
+        $input = $request->validate([
+            'number' => 'required',
+            'value' => 'required|numeric',
+            'title' => 'required',
+            'shortDescription' => 'required|max:191',
+            'time' => 'required|numeric',
+        ]);
+
+        $input['conditional'] = $request['conditional'];
+
+        Assignment::create($input);
+
+        return redirect(route('assignments.index'));
     }
 
     /**
@@ -45,7 +59,8 @@ class AssignmentsController extends Controller
      */
     public function show($id)
     {
-        return view('assignments.show');
+        $assignment = Assignment::findOrFail($id);
+        return view('assignments.show', compact(['assignment']));
     }
 
     /**
@@ -56,7 +71,8 @@ class AssignmentsController extends Controller
      */
     public function edit($id)
     {
-        return view('assignments.update');
+        $assignment = Assignment::findOrFail($id);
+        return view('assignments.update', compact(['assignment']));
     }
 
     /**
@@ -68,7 +84,20 @@ class AssignmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        abort(404);
+        $input = $request->validate([
+            'number' => 'required',
+            'value' => 'required|numeric',
+            'title' => 'required',
+            'shortDescription' => 'required|max:191',
+            'time' => 'required|numeric',
+        ]);
+
+        $input['conditional'] = $request['conditional'];
+
+        $assignment = Assignment::findOrFail($id);
+        $assignment->update($input);
+
+        return redirect(route('assignments.index'));
     }
 
     /**
@@ -79,6 +108,9 @@ class AssignmentsController extends Controller
      */
     public function destroy($id)
     {
-        abort(404);
+        $assignment = Assignment::findOrFail($id);
+        $assignment->delete();
+
+        return redirect(route('assignments.index'));
     }
 }
