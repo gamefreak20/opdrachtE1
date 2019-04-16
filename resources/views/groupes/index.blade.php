@@ -21,7 +21,7 @@
        </form>
       </div>
       <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-striped center">
           <thead>
             <tr>
               <th scope="col">Groep nummer</th>
