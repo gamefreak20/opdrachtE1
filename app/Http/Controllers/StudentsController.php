@@ -15,8 +15,9 @@ class StudentsController extends Controller
      */
     public function index()
     {
+        $studentSearch = "";
         $students = Student::all();
-        return view('students.index', compact(['students']));
+        return view('students.index', compact(['students', 'studentSearch']));
     }
 
     /**
@@ -57,8 +58,9 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        $student = Student::findOrFail($id);
-        return view('students.show', compact(['student']));
+        $students = Student::all();
+        $studentSearch = $id;
+        return view('students.index', compact(['students','studentSearch']));
     }
 
     /**
