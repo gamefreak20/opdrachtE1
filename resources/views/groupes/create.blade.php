@@ -6,6 +6,7 @@
 
 @section('css')
 <link href="{{asset('css/card.css')}}" rel="stylesheet">
+<link href="{{asset('css/class.css')}}" rel="stylesheet">
 @endsection
 
 
@@ -16,38 +17,44 @@
     {!! Form::open(['method'=>'POST', 'action'=>'GroupesController@store', 'class' => '']) !!}
     <div class="card">
       <div class="card-header">
-        Maak student aan
+        Maak groep aan
       </div>
       <div class="card-body">
         <blockquote class="blockquote mb-0">
-          <input class="form-control" type="text" name="assignment" required placeholder="Opdracht">
-          <input class="form-control" type="number" name="totalHours" required placeholder="Aantal uren">
-          <input class="form-control" type="number" name="student_number" required placeholder="Studentennummer">
-          <button type="submit" class="btn btn-primary"><p>Maak aan</p></button>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <input class="form-control" type="text" name="assignment" required placeholder="Opdracht">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <input class="form-control" type="number" name="totalHours" required placeholder="Aantal uren">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              Voeg student toe aan groep: <input class="form-control" placeholder="student toevoegen aan groep..." type="text" id="studentNameSearch2">
+              <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
+            </div>
+          </div>
+          <input type="hidden" name="studentIds" id="studentIdsSelected">
+          <button type="submit" id="change" class="btn btn-primary"><p>Maak Groep aan</p></button>
         </blockquote>
+        {!! Form::close() !!}
+        <table class="table table-striped updateTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Studenten van groep</th>
+              <th scope="col">Acties</th>
+            </tr>
+          </thead>
+          <tbody id="selectedStudents">
+          </tbody>
+        </table>
       </div>
     </div>
-    {!! Form::close() !!}
   </div>
 </div>
-
-<!-- Joey still working on this stuff || -->
-<!--                                  \/-->
-
-    {!! Form::open(['method'=>'POST', 'action'=>'GroupesController@store', 'class' => '']) !!}
-
-        Opdracht: <input type="text" name="assignment"><br>
-        Aantal uren: <input type="number" name="totalHours"><br>
-
-        {{-- Voeg een student toe, zoeken --}}
-        Studenten in de groep:<br>
-        <input type="text" id="studentNameSearch2">
-        <div id="searchStudentNameField"><p class='updateSelect'>Geen studenten gevonden</p></div>
-        <div id="selectedStudents"></div>
-        <input type="hidden" name="studentIds" id="studentIdsSelected">
-
-        <input type="submit">
-
-    {!! Form::close() !!}
 
 @endsection
