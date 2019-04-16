@@ -67,3 +67,11 @@
     @endif
 
 @endsection
+
+@section('lateScripts')
+    @foreach($students as $student)
+        <script type="text/javascript">
+            addStudent2({{$student->id}});
+        </script>
+    @endforeach
+@endsection

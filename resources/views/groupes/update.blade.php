@@ -44,7 +44,7 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Studenten van klas</th>
+              <th scope="col">Studenten van groep</th>
               <th scope="col">Acties</th>
             </tr>
           </thead>
