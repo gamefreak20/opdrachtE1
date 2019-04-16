@@ -16,11 +16,11 @@ class Student extends Model
 
     public function classe()
     {
-        return $this->belongsToMany( 'App\Classe', 'classe_student', 'student_id', 'classe_id' );
+        return $this->belongsToMany( 'App\Classe');
     }
 
     public function groupe()
     {
-        return $this->belongsToMany( 'App\Classe', 'groupe_student', 'student_id', 'groupe_id' );
+        return $this->belongsToMany( 'App\Groupe', 'groupe_student', 'student_id', 'groupe_id' );
     }
 }

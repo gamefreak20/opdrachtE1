@@ -59,13 +59,30 @@
     </thead>
     <tbody id="secretAllData">
         @foreach($students as $student)
+            @php($totalAssignmentsDone = 0)
+            @php($endGrade = 0)
+            @php($grade = 0)
+            @php((isset($student->classe[0]->name) ? $class = $student->classe[0]->name : $class = "niet in een klas"))
+            @foreach($student->groupe as $groupe)
+                @if ($groupe->grade == 0)
+                    @php($doingAssignment = "ja")
+                @else
+                    @php($grade = $grade+$groupe->grade)
+                    @php($totalAssignmentsDone++)
+                    @php($doingAssignment = "nee")
+                @endif
+            @endforeach
+            @if ($totalAssignmentsDone > 0)
+                @php($endGrade = $grade/$totalAssignmentsDone)
+            @endif
+
             <tr>
                 <th scope="row">1</th>
                 <td>{{$student->name}} {{$student->insertion}} {{$student->last_name}}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$class}}</td>
+                <td>{{$doingAssignment}}</td>
+                <td>{{$totalAssignmentsDone}}</td>
+                <td>{{$endGrade}}</td>
                 <td></td>
                 <td><svg class="tableBtn" onclick="window.location='{{route('student.edit', $student->id)}}'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 20 18" style="enable-background:new 0 0 20 18;" xml:space="preserve"><path id="Shape" d="M1,14.2V18h3.8l11-11.1L12,3.1L1,14.2z M18.7,4c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8 L17,5.9L18.7,4z"/></svg>
