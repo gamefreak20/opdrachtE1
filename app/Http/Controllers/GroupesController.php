@@ -45,7 +45,7 @@ class GroupesController extends Controller
         }
 
         $input = $request->validate([
-            'assignment' => 'required|numeric',
+            'assignment' => 'required',
             'totalHours' => 'required|numeric',
             'studentIds' => 'required',
         ]);
