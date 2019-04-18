@@ -23,6 +23,13 @@ Route::group(['middleware' => 'auth'], function ()
     Route::resource('/classes', 'ClassesController');
     Route::resource('/groupe', 'GroupesController');
     Route::resource('/student', 'StudentsController');
+    Route::get('/student/{id}/detail', 'StudentsController@detail');
+    Route::get('/createCard', function () {
+        return view('createCard');
+    });
+
+    Route::get('/classe/searchName', 'ClassesController@searchName')->name('classes.searchName');
+
 
     Route::get('/groupe/deleteStudent/{id}', 'GroupesController@deleteStudent')->name('groupe.deleteStudent');
     Route::get('/searchStudent/{name}', 'StudentsController@searchStudent')->name('student.search');
