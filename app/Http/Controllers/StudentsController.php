@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Groupe;
 use App\Student;
 use App\User;
 use Illuminate\Http\Request;
@@ -61,6 +62,35 @@ class StudentsController extends Controller
         $students = Student::all();
         $studentSearch = $id;
         return view('students.index', compact(['students','studentSearch']));
+    }
+
+    public function detail($id)
+    {
+        $student = Student::findOrFail($id);
+        $totalAssignmentsDone = 0;
+        $endGrade = 0;
+        $grade = 0;
+        if (isset($student->classe[0]->name)) {
+            $class = $student->classe[0]->name;
+        } else {
+            $class = "niet in een klas";
+        }
+        foreach ($student->groupe as $groupe) {
+            if ($groupe->grade == 0) {
+                $doingAssignment = "ja";
+            } else {
+                $grade = $grade + $groupe->grade;
+                $totalAssignmentsDone++;
+                $doingAssignment = "nee";
+            }
+        }
+        if ($totalAssignmentsDone > 0){
+            $endGrade = $grade/$totalAssignmentsDone;
+        }
+
+        $groupes = $student->groupe;
+
+        return view('students.show', compact(['student', 'totalAssignmentsDone', 'class', 'endGrade', 'grade', 'doingAssignment', 'groupes']));
     }
 
     /**
