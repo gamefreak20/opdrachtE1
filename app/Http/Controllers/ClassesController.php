@@ -115,4 +115,47 @@ class ClassesController extends Controller
 
         return redirect(route('classes.index'));
     }
+
+    public function searchName(Request $request)
+    {
+        $data = array();
+
+        $classes = Classe::where('name', 'like', '%' . $request->name . '%')->get();
+
+        foreach ($classes as $class) {
+            $count = 0;
+            $total = 0;
+            $studentsCount = 0;
+            $totalAssignments = 0;
+
+            foreach ($class->student as $student) {
+                $studentsCount++;
+
+                foreach ($student->groupe as $groupe) {
+                    if ($groupe->grade != 0) {
+                        $count++;
+                        $total = $total + $groupe->grade;
+                        $totalAssignments++;
+                    }
+                }
+            }
+
+            $averageGrade = $total / $count;
+            $averageAssignments = $totalAssignments / $studentsCount;
+
+            $data[] = array(
+                'class' => $class,
+                'data' => array(
+                    'count' => $count,
+                    'total' => $total,
+                    'studentCount' => $studentsCount,
+                    'totalAssignments' => $totalAssignments,
+                    'averageGrade' => $averageGrade,
+                    'averageAssignments' => $averageAssignments,
+                ),
+            );
+        }
+
+        return $data;
+    }
 }

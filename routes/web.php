@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function ()
         return view('createCard');
     });
 
+    Route::get('/classe/searchName', 'ClassesController@searchName')->name('classes.searchName');
+
+
     Route::get('/groupe/deleteStudent/{id}', 'GroupesController@deleteStudent')->name('groupe.deleteStudent');
     Route::get('/searchStudent/{name}', 'StudentsController@searchStudent')->name('student.search');
     Route::get('/searchStudentById/{id}', 'StudentsController@searchStudentById')->name('studentId.search');
