@@ -12,8 +12,7 @@
 
   <div class="row">
     <div class="col item">
-      <span><a href=""><p class="delete">Delete</p></a></span>
-      <a href="" class="hitbox">
+      <a href="createCard" class="hitbox">
         <h1 class="addItem">+</h1>
       </a>
     </div>
