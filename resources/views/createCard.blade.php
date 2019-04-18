@@ -35,6 +35,4 @@
   </div>
   <button type="submit" class="btn btn-primary" id="submitBtn"><p>Voeg kaart toe</p></button>
 </div>
-
-
 @endsection
