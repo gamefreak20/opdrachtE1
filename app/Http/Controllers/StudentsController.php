@@ -77,11 +77,11 @@ class StudentsController extends Controller
         }
         foreach ($student->groupe as $groupe) {
             if ($groupe->grade == 0) {
-                $doingAssignment = "ja";
+                $doingAssignment = "Bezig";
             } else {
                 $grade = $grade + $groupe->grade;
                 $totalAssignmentsDone++;
-                $doingAssignment = "nee";
+                $doingAssignment = "Niet bezig";
             }
         }
         if ($totalAssignmentsDone > 0){

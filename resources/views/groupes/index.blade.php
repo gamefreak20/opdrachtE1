@@ -17,7 +17,7 @@
       <div class="card-header">
         Groepen
         <form class="form-inline my-2 my-lg-0 searchArea">
-         <input class="form-control mr-sm-2" name="searchGroupe" id="searchGroupe" type="search" placeholder="Zoek Groep(en)..." aria-label="searchStudent">
+         <input class="form-control mr-sm-2" name="searchGroupe" id="searchGroupe" type="search" placeholder="Zoek een groep..." aria-label="searchStudent">
        </form>
       </div>
       <div class="card-body">

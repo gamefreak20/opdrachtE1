@@ -17,7 +17,7 @@
       <div class="card-header">
         Studenten
         <form class="form-inline my-2 my-lg-0 searchArea">
-         <input class="form-control mr-sm-2" type="search" id="searchStudent" placeholder="Zoek student(en)..." aria-label="searchStudent" value="{{$studentSearch}}"/>
+         <input class="form-control mr-sm-2" type="search" id="searchStudent" placeholder="Zoek een student..." aria-label="searchStudent" value="{{$studentSearch}}"/>
        </form>
       </div>
       <div class="card-body">

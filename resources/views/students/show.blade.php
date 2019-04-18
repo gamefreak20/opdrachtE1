@@ -30,7 +30,7 @@
                   <th scope="col">Bezig met een opdracht</th>
                   <th scope="col">Aantal gemaakte opdrachten</th>
                   <th scope="col">Eindcijfer</th>
-                  <th scope="col">Voortgang</th>
+                  <th scope="col">Bezig met opdracht</th>
                 </tr>
               </thead>
               <tbody>
@@ -40,7 +40,7 @@
                   <td class="center">{{$doingAssignment}}</td>
                   <td class="center">{{$totalAssignmentsDone}}</td>
                   <td class="center">{{$endGrade}}</td>
-                  <td class="center">Prgress</td>
+                  <td class="center">{{$doingAssignment}}</td>
                 </tr>
               </tbody>
             </table>

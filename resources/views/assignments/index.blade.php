@@ -17,7 +17,7 @@
                 <div class="card-header">
                     Opdrachten
                     <form class="form-inline my-2 my-lg-0 searchArea">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Zoek opdracht(en)..." aria-label="searchStudent">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Zoek een opdracht..." aria-label="searchStudent">
                     </form>
                 </div>
                 <div class="card-body">

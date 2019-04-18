@@ -18,28 +18,15 @@
       <div class="card-header">
         Klassen
         <form class="form-inline my-2 my-lg-0 searchArea">
-         <input class="form-control mr-sm-2" type="search" id="searchClassesField" placeholder="Zoek Klas(sen)..." aria-label="searchStudent">
+            <input type="hidden" id="hiddenlink" value="">
+            <input class="form-control mr-sm-2" type="search" id="searchClassesField" placeholder="Zoek een klas..." aria-label="searchStudent">
+            <a href="#" id="searchButton">zoeken</a>
        </form>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-9">
-            <table class="table table-striped center">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Klas</th>
-                  <th scope="col">Gemiddelde cijfer klas</th>
-                  <th scope="col">Gemiddelde aantal opdrachten gemaakt</th>
-                  <th scope="col">Acties</th>
-                </tr>
-              </thead>
-              <tbody id="bodyOfRealForm">
-
-              </tbody>
-            </table>
-
-              <table class="table table-striped center" style="display: none">
+              <table class="table table-striped center">
                   <thead>
                   <tr>
                       <th scope="col">#</th>
@@ -56,26 +43,33 @@
                       @php($total = 0)
                       @php($studentsCount = 0)
                       @php($totalAssignments = 0)
+                      @php($averageGrade = 0)
+                      @php($averageAssignments = 0)
 
-                      @foreach($class->student as $student)
 
-                          @php($studentsCount++)
 
-                          @foreach($student->groupe as $groupe)
-                              @if ($groupe->grade != 0)
-                                  @php($count++)
-                                  @php($total = $total + $groupe->grade)
-                                  @php($totalAssignments++)
-                              @endif
+                          @foreach($class->student as $student)
+
+                              @php($studentsCount++)
+
+                              @foreach($student->groupe as $groupe)
+                                  @if ($groupe->grade != 0)
+                                      @php($count++)
+                                      @php($total = $total + $groupe->grade)
+                                      @php($totalAssignments++)
+                                  @endif
+                              @endforeach
+
                           @endforeach
+                      @if (is_numeric($total) && $total != 0)
 
-                      @endforeach
+                          @php($averageGrade = $total/$count)
+                          @php($averageAssignments = $totalAssignments/$studentsCount)
 
-                      @php($averageGrade = $total/$count)
-                      @php($averageAssignments = $totalAssignments/$studentsCount)
+                      @endif
 
                       <tr>
-                          <th scope="row">1</th>
+                          <th scope="row" id="class{{$class->name}}">1</th>
                           <td>{{$class->name}}</td>
                           <td>{{$averageGrade}}</td>
                           <td>{{$averageAssignments}}</td>
