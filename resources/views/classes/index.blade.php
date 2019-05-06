@@ -20,7 +20,7 @@
         <form class="form-inline my-2 my-lg-0 searchArea">
             <input type="hidden" id="hiddenlink" value="">
             <input class="form-control mr-sm-2" type="search" id="searchClassesField" placeholder="Zoek een klas..." aria-label="searchStudent">
-            <a href="#" id="searchButton">zoeken</a>
+            <a href="#" class="searchButton"><img src="{{ asset('images/header/searchButton.png') }}"></a>
        </form>
       </div>
       <div class="card-body">

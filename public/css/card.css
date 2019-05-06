@@ -56,6 +56,11 @@
   margin-bottom: 1rem;
 }
 
+.mr-sm-2
+{
+  padding-right: 36px;
+}
+
 .table-striped tbody tr:nth-of-type(even)
 {
   background-color: #EFECEC;
@@ -134,4 +139,12 @@
 .center
 {
   text-align: center;
+}
+
+.searchButton img
+{
+  width: 25px;
+  position: absolute;
+  right: 14px;
+  top: -9px;
 }

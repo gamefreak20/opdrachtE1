@@ -18,6 +18,7 @@
                     Opdrachten
                     <form class="form-inline my-2 my-lg-0 searchArea">
                         <input class="form-control mr-sm-2" type="search" placeholder="Zoek een opdracht..." aria-label="searchStudent">
+                        <a href="#" class="searchButton"><img src="{{ asset('images/header/searchButton.png') }}"></a>
                     </form>
                 </div>
                 <div class="card-body">
