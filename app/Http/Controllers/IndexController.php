@@ -219,6 +219,44 @@ class IndexController extends Controller
                 $data2 = array();
                 $data3 = array();
                 $data4 = array();
+            } elseif ($chart->label == "Gemiddelde aantal opdrachten per persoon voor een klas") {
+                $totalStudents = 0;
+                $class = Classe::where(['name' => $chart->data])->first();
+                foreach ($class->student()->get() as $student) {
+                    $totalStudents++;
+                    foreach ($student->groupe()->get() as $groupe) {
+                        if ($groupe->grade != 0.0) {
+                            $date = explode('-', $groupe->endDate);
+                            if ($date[1] == $monthNow) {
+                                $data1[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-1) {
+                                $data2[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-2) {
+                                $data3[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-3) {
+                                $data4[] = $groupe->grade;
+                            }
+                        }
+                    }
+                }
+                $data1End = count($data1)/$totalStudents;
+                $data2End = count($data2)/$totalStudents;
+                $data3End = count($data3)/$totalStudents;
+                $data4End = count($data4)/$totalStudents;
+
+
+                $data[$chart->label . " " . $chart->data] = array (
+                    'data' => [
+                        $data1End,
+                        $data2End,
+                        $data3End,
+                        $data4End,
+                    ]
+                );
+                $data1 = array();
+                $data2 = array();
+                $data3 = array();
+                $data4 = array();
             }
         }
 
