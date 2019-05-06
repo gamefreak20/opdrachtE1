@@ -18,6 +18,7 @@
         Groepen
         <form class="form-inline my-2 my-lg-0 searchArea">
          <input class="form-control mr-sm-2" name="searchGroupe" id="searchGroupe" type="search" placeholder="Zoek een groep..." aria-label="searchStudent">
+         <a href="#" class="searchButton"><img src="{{ asset('images/header/searchButton.png') }}"></a>
        </form>
       </div>
       <div class="card-body">

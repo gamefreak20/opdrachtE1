@@ -38,6 +38,13 @@ h3
   box-shadow: 0px 0px 24px rgba(0, 0, 0, .16);
   z-index: 2;
   background-color: white;
+  transition: .2s;
+}
+
+#verticalNav
+{
+  position: relative;
+  top: 10px;
 }
 
 #verticalNav p, h3
@@ -73,6 +80,7 @@ h3
   background-color: #A2E147;
   height: 100px;
   z-index: 1;
+  transition: .2s;
 }
 
 #horizontalNav p
@@ -145,6 +153,7 @@ h3
   min-width: calc(100% - 420px);
   float: right;
   position: relative;
+  transition: .2s;
 }
 
 /*  bootstrap edited */
@@ -175,4 +184,15 @@ h3
   margin-right: auto;
   margin-top: 10px;
   min-width: 900px;
+}
+
+#hamburger svg
+{
+  fill: #A2E147;
+  height: 50px;
+  left: 20px;
+  top: 20px;
+  position: absolute;
+  z-index: 3;
+  transition: .2s;
 }
