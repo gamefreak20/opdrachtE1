@@ -196,8 +196,3 @@ h3
   z-index: 3;
   transition: .2s;
 }
-
-.col
-{
-  max-width: 46% !important;
-}
