@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Classe;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -13,7 +16,225 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $user = User::find(Auth::user()->id);
+        $charts = $user->indexCharts();
+        $data = array();
+        $data1 = array();
+        $data2 = array();
+        $data3 = array();
+        $data4 = array();
+        $monthNow = date('m');
+        $yearNow = date('y');
+
+//        return $charts->get();
+
+        foreach ($charts->get() as $chart) {
+            if ($chart->label == "Gemiddelde cijfer de klas") {
+                $class = Classe::where(['name' => $chart->data])->first();
+                foreach ($class->student()->get() as $student) {
+                    foreach ($student->groupe()->get() as $groupe) {
+                        if ($groupe->grade != 0.0) {
+                            $date = explode('-', $groupe->endDate);
+                            if ($date[1] == $monthNow) {
+                                $data1[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-1) {
+                                $data2[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-2) {
+                                $data3[] = $groupe->grade;
+                            } elseif ($date[1] == $monthNow-3) {
+                                $data4[] = $groupe->grade;
+                            }
+                        }
+                    }
+                }
+                if (count($data1) > 0) {
+                    $data1Count = 0;
+                    $data1Total = 0;
+                    foreach ($data1 as $item) {
+                        $data1Count++;
+                        $data1Total = $data1Total+$item;
+                    }
+                    $data1End = $data1Total/$data1Count;
+                } else {
+                    $data1End = 0;
+                }
+                if (count($data2) > 0) {
+                    $data2Count = 0;
+                    $data2Total = 0;
+                    foreach ($data2 as $item) {
+                        $data2Count++;
+                        $data2Total = $data2Total+$item;
+                    }
+                    $data2End = $data2Total/$data2Count;
+                } else {
+                    $data2End = 0;
+                }
+                if (count($data3) > 0) {
+                    $data3Count = 0;
+                    $data3Total = 0;
+                    foreach ($data3 as $item) {
+                        $data3Count++;
+                        $data3Total = $data3Total+$item;
+                    }
+                    $data3End = $data3Total/$data3Count;
+                } else {
+                    $data3End = 0;
+                }
+                if (count($data4) > 0) {
+                    $data4Count = 0;
+                    $data4Total = 0;
+                    foreach ($data4 as $item) {
+                        $data4Count++;
+                        $data4Total = $data4Total+$item;
+                    }
+                    $data4End = $data4Total/$data4Count;
+                } else {
+                    $data4End = 0;
+                }
+                $data[$chart->label . " " . $chart->data]  = array (
+                        'data' => [
+                            $data1End,
+                            $data2End,
+                            $data3End,
+                            $data4End,
+                        ]
+                    );
+                $data1 = array();
+                $data2 = array();
+                $data3 = array();
+                $data4 = array();
+            } elseif ($chart->label == "Gemiddelde cijfer alle klassen") {
+                $classes = Classe::all();
+                foreach ($classes as $class) {
+                    foreach ($class->student()->get() as $student) {
+                        foreach ($student->groupe()->get() as $groupe) {
+                            if ($groupe->grade != 0.0) {
+                                $date = explode('-', $groupe->endDate);
+                                if ($date[1] == $monthNow) {
+                                    $data1[] = $groupe->grade;
+                                } elseif ($date[1] == $monthNow-1) {
+                                    $data2[] = $groupe->grade;
+                                } elseif ($date[1] == $monthNow-2) {
+                                    $data3[] = $groupe->grade;
+                                } elseif ($date[1] == $monthNow-3) {
+                                    $data4[] = $groupe->grade;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (count($data1) > 0) {
+                    $data1Count = 0;
+                    $data1Total = 0;
+                    foreach ($data1 as $item) {
+                        $data1Count++;
+                        $data1Total = $data1Total+$item;
+                    }
+                    $data1End = $data1Total/$data1Count;
+                } else {
+                    $data1End = 0;
+                }
+                if (count($data2) > 0) {
+                    $data2Count = 0;
+                    $data2Total = 0;
+                    foreach ($data2 as $item) {
+                        $data2Count++;
+                        $data2Total = $data2Total+$item;
+                    }
+                    $data2End = $data2Total/$data2Count;
+                } else {
+                    $data2End = 0;
+                }
+                if (count($data3) > 0) {
+                    $data3Count = 0;
+                    $data3Total = 0;
+                    foreach ($data3 as $item) {
+                        $data3Count++;
+                        $data3Total = $data3Total+$item;
+                    }
+                    $data3End = $data3Total/$data3Count;
+                } else {
+                    $data3End = 0;
+                }
+                if (count($data4) > 0) {
+                    $data4Count = 0;
+                    $data4Total = 0;
+                    foreach ($data4 as $item) {
+                        $data4Count++;
+                        $data4Total = $data4Total+$item;
+                    }
+                    $data4End = $data4Total/$data4Count;
+                } else {
+                    $data4End = 0;
+                }
+                $data[$chart->label] = array (
+                    'data' => [
+                        $data1End,
+                        $data2End,
+                        $data3End,
+                        $data4End,
+                    ]
+                );
+                $data1 = array();
+                $data2 = array();
+                $data3 = array();
+                $data4 = array();
+            } elseif ($chart->label == "Gemiddelde aantal opdrachten per persoon alle klassen") {
+                $totalStudents = 0;
+                $classes = Classe::all();
+                foreach ($classes as $class) {
+                    $totalStudents++;
+                    foreach ($class->student()->get() as $student) {
+                        foreach ($student->groupe()->get() as $groupe) {
+                            if ($groupe->grade != 0.0) {
+                                $date = explode('-', $groupe->endDate);
+                                if ($date[1] == $monthNow) {
+                                    $data1[] = 1;
+                                } elseif ($date[1] == $monthNow-1) {
+                                    $data2[] = 1;
+                                } elseif ($date[1] == $monthNow-2) {
+                                    $data3[] = 1;
+                                } elseif ($date[1] == $monthNow-3) {
+                                    $data4[] = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                $data1End = count($data1)/$totalStudents;
+                $data2End = count($data2)/$totalStudents;
+                $data3End = count($data3)/$totalStudents;
+                $data4End = count($data4)/$totalStudents;
+
+
+                $data[$chart->label] = array (
+                    'data' => [
+                        $data1End,
+                        $data2End,
+                        $data3End,
+                        $data4End,
+                    ]
+                );
+                $data1 = array();
+                $data2 = array();
+                $data3 = array();
+                $data4 = array();
+            }
+        }
+
+        if (!isset($data)) {
+            $data = null;
+        }
+
+        $date = [
+            $yearNow,
+            $monthNow,
+            $monthNow-1,
+            $monthNow-2,
+            $monthNow-3,
+        ];
+
+        return view('index', compact('data', 'date'));
     }
 
     /**
