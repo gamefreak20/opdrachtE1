@@ -57,4 +57,5 @@
 .col
 {
   max-width: 46% !important;
+  min-width: 46%;
 }
