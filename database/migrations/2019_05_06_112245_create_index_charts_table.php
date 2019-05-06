@@ -17,7 +17,7 @@ class CreateIndexChartsTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id');
             $table->string('label');
-            $table->text('data');
+            $table->text('data')->nullable();
             $table->timestamps();
         });
     }

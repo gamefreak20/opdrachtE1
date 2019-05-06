@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classe;
+use App\IndexCharts;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -294,6 +295,41 @@ class IndexController extends Controller
     public function store(Request $request)
     {
         abort(404);
+    }
+
+    public function chart(Request $request)
+    {
+        $input = $request->validate([
+            'idSelected' => 'numeric|required',
+        ]);
+
+        if ($input['idSelected'] == "Gemiddelde cijfer de klas" || $input['idSelected'] == "Gemiddelde aantal opdrachten per persoon voor een klas") {
+            $input2 = $request->validate([
+                'class' => 'required',
+            ]);
+            Classe::where(['name' => $input2['class']])->firstOrFail();
+        }
+
+        switch ($input['idSelected']) {
+            case 1:
+                $input2['label'] = "Gemiddelde cijfer alle klassen";
+                break;
+            case 2:
+                $input2['label'] = "Gemiddelde cijfer de klas";
+                break;
+            case 3:
+                $input2['label'] = "Gemiddelde aantal opdrachten per persoon alle klassen";
+                break;
+            case 4:
+                $input2['label'] = "Gemiddelde aantal opdrachten per persoon voor een klas";
+                break;
+        }
+
+        $input2['user_id'] = Auth::user()->id;
+
+        IndexCharts::created($input2);
+
+        return redirect(route('index'));
     }
 
     /**

@@ -12,6 +12,7 @@
 
 @section('content')
 <div class="row">
+    {!! Form::open(['method'=>'POST', 'action'=>'IndexController@chart']) !!}
   <input type="hidden" name="idSelected" id="idSelected"/>
   <div class="form-row">
 
@@ -59,6 +60,8 @@
     </div>
 
   </div>
+    <input type="text" name="class">
   <button type="submit" class="btn btn-primary" id="submitBtn"><p>Voeg kaart toe</p></button>
+    {!! Form::close() !!}
 </div>
 @endsection
