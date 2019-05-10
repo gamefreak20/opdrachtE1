@@ -98,7 +98,8 @@ class IndexController extends Controller
                             $data2End,
                             $data3End,
                             $data4End,
-                        ]
+                        ],
+                        'id' => $chart->id,
                     );
                 $data1 = array();
                 $data2 = array();
@@ -174,7 +175,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -214,7 +216,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -252,7 +255,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -340,8 +344,18 @@ class IndexController extends Controller
         $input2['user_id'] = Auth::user()->id;
 
         IndexCharts::create($input2);
-//        return $input2;
         return redirect(route('index'));
+    }
+
+    public function chartDelete($id)
+    {
+        $chart = IndexCharts::findOrFail($id);
+        if ($chart->user_id == Auth::user()->id) {
+            $chart->delete();
+            return redirect(route('index'));
+        } else {
+            return redirect(route('index'));
+        }
     }
 
     /**
