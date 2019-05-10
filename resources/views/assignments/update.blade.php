@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             Korte beschrijving: <small class="form-text text-muted">Maximaal kan u 191 karakters gebruiken.</small>
-                            <textarea class="form-control" type="text" name="shortDescription" placeholder="Korte beschrijving..." value="{{$assignment->shortDescription}}"></textarea>
+                            <textarea class="form-control" type="text" name="shortDescription" placeholder="Korte beschrijving...">{{$assignment->shortDescription}}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary"><p>Opdracht veranderen</p></button>
