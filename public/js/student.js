@@ -38,14 +38,13 @@ function searchStudent()
                 } else {
                     var insertion = " "+value.insertion;
                 }
-                console.log(value);
                 output += "<tr></tr>" +
                     "                <th scope=\"row\">1</th>" +
                     "                <td>"+value[0]['name']+insertion+" "+value[0]['last_name']+ "</td>" +
                     "                <td>"+value['class']+"</td>" +
-                    "                <td></td>" +
-                    "                <td></td>" +
-                    "                <td></td>" +
+                    "                <td>"+value['bezig_met_opdracht']+"</td>" +
+                    "                <td>"+value['aantal_gemaakte_opdrachten']+"</td>" +
+                    "                <td>"+value['endGrade']+"</td>" +
                     "                <td></td>" +
                     "                <td><svg class=\"tableBtn\" onclick=\"window.location='http://projects.school/opdrachtE1/public/student/1/edit'\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"" +
                     "                         viewBox=\"0 0 20 18\" style=\"enable-background:new 0 0 20 18;\" xml:space=\"preserve\"><path id=\"Shape\" d=\"M1,14.2V18h3.8l11-11.1L12,3.1L1,14.2z M18.7,4c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8 L17,5.9L18.7,4z\"/></svg>" +
