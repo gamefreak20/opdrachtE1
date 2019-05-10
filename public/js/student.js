@@ -38,10 +38,11 @@ function searchStudent()
                 } else {
                     var insertion = " "+value.insertion;
                 }
+                console.log(value);
                 output += "<tr></tr>" +
                     "                <th scope=\"row\">1</th>" +
-                    "                <td>"+value.name+insertion+" "+value.last_name+ "</td>" +
-                    "                <td></td>" +
+                    "                <td>"+value[0]['name']+insertion+" "+value[0]['last_name']+ "</td>" +
+                    "                <td>"+value['class']+"</td>" +
                     "                <td></td>" +
                     "                <td></td>" +
                     "                <td></td>" +

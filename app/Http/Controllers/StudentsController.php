@@ -144,8 +144,30 @@ class StudentsController extends Controller
 
     public function searchStudent($name)
     {
+        $data = array();
         $students = Student::where('name', 'like', '%'.$name.'%')->get();
-        return $students;
+
+        foreach ($students as $student) {
+            $totalAssignmentsDone = 0;
+            $grade = 0;
+            $data[$student->id] = array (
+                $student,
+                'class' => (isset($student->classe[0]->name) ? $class = $student->classe[0]->name : $class = "niet in een klas"),
+            );
+            foreach ($student->groupe as $groupe) {
+                if ($groupe->grade == 0) {
+                    $data[$student->id]['bezig_met_opdracht'] = 'ja';
+                } else {
+                    $data[$student->id]['bezig_met_opdracht'] = 'nee';
+                    $totalAssignmentsDone++;
+                    $grade = $grade+$groupe->grade;
+                }
+            }
+            $data[$student->id]['aantal_gemaakte_opdrachten'] = $totalAssignmentsDone;
+            $data[$student->id]['endGrade'] = $grade/$totalAssignmentsDone;
+        }
+
+        return $data;
     }
 
     public function searchStudentById($id)

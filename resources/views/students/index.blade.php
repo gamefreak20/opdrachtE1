@@ -59,7 +59,9 @@
     </tr>
     </thead>
     <tbody id="secretAllData">
+    @php($studentNumber = 0)
         @foreach($students as $student)
+            @php($studentNumber++)
             @php($totalAssignmentsDone = 0)
             @php($endGrade = 0)
             @php($grade = 0)
@@ -78,7 +80,7 @@
             @endif
 
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{$studentNumber}}</th>
                 <td>{{$student->name}} {{$student->insertion}} {{$student->last_name}}</td>
                 <td>{{$class}}</td>
                 <td>{{$doingAssignment}}</td>
