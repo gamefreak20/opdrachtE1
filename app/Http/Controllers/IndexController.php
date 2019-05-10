@@ -297,11 +297,23 @@ class IndexController extends Controller
         abort(404);
     }
 
+    /**
+     * Creates a new chart
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function chart(Request $request)
     {
         $input = $request->validate([
-            'idSelected' => 'numeric|required',
+            'idSelected' => 'required',
         ]);
+
+        if (!ctype_digit($input['idSelected'])) {
+            abort(404);
+        }
+
+        /*
 
         if ($input['idSelected'] == "Gemiddelde cijfer de klas" || $input['idSelected'] == "Gemiddelde aantal opdrachten per persoon voor een klas") {
             $input2 = $request->validate([
@@ -330,6 +342,8 @@ class IndexController extends Controller
         IndexCharts::created($input2);
 
         return redirect(route('index'));
+        */
+        return $request;
     }
 
     /**
