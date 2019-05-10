@@ -89,16 +89,22 @@
           </div>
 
           <div class="col-sm">
-
             <div class="card card-note">
               <div class="card-header">
                 Laatst opdracht die aangemaakt is
               </div>
               <div class="card-body">
-                <p class="card-text">Opdracht: A1
-                  <br>Namen: Bas, Nick
-                  <br>Begin-datum: 04-02-2019
-                  <br>Eind-datum: 05-05-2019
+                <p class="card-text">Opdracht: {{$bestAssignmentThisMonth->assignment}}
+                  <br>Namen:
+                    @foreach($bestAssignmentThisMonth->student as $student)
+                        @if ($loop->last)
+                            {{$student->name}} {{$student->last_name}}
+                        @else
+                            {{$student->name}} {{$student->last_name}},
+                        @endif
+                    @endforeach
+                  <br>Begin-datum: {{$bestAssignmentThisMonth->startDate}}
+                  <br>Eind-datum: {{$bestAssignmentThisMonth->endDate}}
                 </p>
               </div>
             </div>
@@ -108,22 +114,36 @@
                 Laatst opdracht die af is
               </div>
               <div class="card-body">
-                <p class="card-text">Opdracht: E5
-                  <br>Namen: Bart, Gerrie
-                  <br>Begin-datum: 02-03-2019
-                  <br>Eind-datum: 12-04-2019
+                <p class="card-text">Opdracht: {{$latestAssignmentDone->assignment}}
+                  <br>Namen:
+                    @foreach($latestAssignmentDone->student as $student)
+                        @if ($loop->last)
+                            {{$student->name}} {{$student->last_name}}
+                        @else
+                            {{$student->name}} {{$student->last_name}},
+                        @endif
+                    @endforeach
+                  <br>Begin-datum: {{$latestAssignmentDone->startDate}}
+                  <br>Eind-datum: {{$latestAssignmentDone->endDate}}
                 </p>
               </div>
             </div>
 
             <div class="card card-note">
               <div class="card-header">
-                Beste afgemaakte opdracht van de week
+                Beste afgemaakte opdracht van de maand
               </div>
               <div class="card-body">
-                <p class="card-text">Opdracht: A3
-                  <br>Namen: Bas, Nick
-                  <br>Cijfer: 8
+                <p class="card-text">Opdracht: {{$bestAssignments->assignment}}
+                  <br>Namen:
+                    @foreach($bestAssignments->student as $student)
+                        @if ($loop->last)
+                            {{$student->name}} {{$student->last_name}}
+                        @else
+                            {{$student->name}} {{$student->last_name}},
+                        @endif
+                    @endforeach
+                  <br>Cijfer: {{$bestAssignments->grade}}
                 </p>
               </div>
             </div>

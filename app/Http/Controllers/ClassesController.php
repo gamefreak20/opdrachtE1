@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Assignment;
 use App\Classe;
+use App\Groupe;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +18,11 @@ class ClassesController extends Controller
      */
     public function index()
     {
+        $bestAssignmentThisMonth = Groupe::whereMonth('startDate', '=', date('m'))->where('grade', '!=' , 0)->orderBy('startDate', 'desc')->first();
+        $latestAssignmentDone = Groupe::where('grade', '!=' , 0)->orderBy('id', 'desc')->first();
+        $bestAssignments = Groupe::whereMonth('startDate', '=', date('m'))->where('grade', '!=' , 0)->orderBy('grade', 'desc')->first();
         $classes = Classe::all();
-        return view('classes.index', compact(['classes']));
+        return view('classes.index', compact(['classes', 'bestAssignmentThisMonth', 'latestAssignmentDone', 'bestAssignments']));
     }
 
     /**
