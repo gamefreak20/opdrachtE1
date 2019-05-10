@@ -49,7 +49,7 @@
                     @endif
                 @endforeach
               </td>
-              <td><a href="#">{{$groupe->assignment}}</a></td>
+              <td>{{$groupe->assignment}}</td>
               @php($groupe->grade == 0 ? $grade = 'Nog bezig' : $grade = $groupe->grade)
               <td>{{$grade}}</td>
               <td>{{$groupe->comment}}</td>
