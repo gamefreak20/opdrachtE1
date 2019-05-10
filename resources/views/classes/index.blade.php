@@ -89,25 +89,30 @@
           </div>
 
           <div class="col-sm">
-            <div class="card card-note">
-              <div class="card-header">
-                Laatst opdracht die aangemaakt is
-              </div>
-              <div class="card-body">
-                <p class="card-text">Opdracht: {{$bestAssignmentThisMonth->assignment}}
-                  <br>Namen:
-                    @foreach($bestAssignmentThisMonth->student as $student)
-                        @if ($loop->last)
-                            {{$student->name}} {{$student->last_name}}
-                        @else
-                            {{$student->name}} {{$student->last_name}},
-                        @endif
-                    @endforeach
-                  <br>Begin-datum: {{$bestAssignmentThisMonth->startDate}}
-                  <br>Eind-datum: {{$bestAssignmentThisMonth->endDate}}
-                </p>
-              </div>
-            </div>
+              @if (isset($bestAssignmentThisMonth))
+
+              <div class="card card-note">
+                  <div class="card-header">
+                    Laatst opdracht die aangemaakt is
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">Opdracht: {{$bestAssignmentThisMonth->assignment}}
+                      <br>Namen:
+                        @foreach($bestAssignmentThisMonth->student as $student)
+                            @if ($loop->last)
+                                {{$student->name}} {{$student->last_name}}
+                            @else
+                                {{$student->name}} {{$student->last_name}},
+                            @endif
+                        @endforeach
+                      <br>Begin-datum: {{$bestAssignmentThisMonth->startDate}}
+                      <br>Eind-datum: {{$bestAssignmentThisMonth->endDate}}
+                    </p>
+                  </div>
+                </div>
+              @endif
+
+          @if (isset($latestAssignmentDone))
 
             <div class="card card-note">
               <div class="card-header">
@@ -128,8 +133,11 @@
                 </p>
               </div>
             </div>
+              @endif
 
-            <div class="card card-note">
+                  @if (isset($bestAssignments))
+
+              <div class="card card-note">
               <div class="card-header">
                 Beste afgemaakte opdracht van de maand
               </div>
@@ -147,6 +155,7 @@
                 </p>
               </div>
             </div>
+                  @endif
 
           </div>
 
