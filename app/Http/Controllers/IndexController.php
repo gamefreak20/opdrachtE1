@@ -98,7 +98,8 @@ class IndexController extends Controller
                             $data2End,
                             $data3End,
                             $data4End,
-                        ]
+                        ],
+                        'id' => $chart->id,
                     );
                 $data1 = array();
                 $data2 = array();
@@ -174,7 +175,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -214,7 +216,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -252,7 +255,8 @@ class IndexController extends Controller
                         $data2End,
                         $data3End,
                         $data4End,
-                    ]
+                    ],
+                    'id' => $chart->id,
                 );
                 $data1 = array();
                 $data2 = array();
@@ -313,13 +317,13 @@ class IndexController extends Controller
             abort(404);
         }
 
-        /*
 
-        if ($input['idSelected'] == "Gemiddelde cijfer de klas" || $input['idSelected'] == "Gemiddelde aantal opdrachten per persoon voor een klas") {
-            $input2 = $request->validate([
+        if ($input['idSelected'] == 2 || $input['idSelected'] == 4) {
+            $input3 = $request->validate([
                 'class' => 'required',
             ]);
-            Classe::where(['name' => $input2['class']])->firstOrFail();
+            Classe::where(['name' => $input3['class']])->firstOrFail();
+            $input2['data'] = $input3['class'];
         }
 
         switch ($input['idSelected']) {
@@ -339,11 +343,19 @@ class IndexController extends Controller
 
         $input2['user_id'] = Auth::user()->id;
 
-        IndexCharts::created($input2);
-
+        IndexCharts::create($input2);
         return redirect(route('index'));
-        */
-        return $request;
+    }
+
+    public function chartDelete($id)
+    {
+        $chart = IndexCharts::findOrFail($id);
+        if ($chart->user_id == Auth::user()->id) {
+            $chart->delete();
+            return redirect(route('index'));
+        } else {
+            return redirect(route('index'));
+        }
     }
 
     /**

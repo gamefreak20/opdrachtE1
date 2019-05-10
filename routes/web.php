@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::get('/logoutLink', 'GetRequestController@logoutLink');
     Route::resource('/', 'IndexController');
     Route::post('/chart', 'IndexController@chart')->name('chart.create');
+    Route::get('/chartDelete/{id}', 'IndexController@chartDelete')->name('chart.delete');
     Route::resource('/profile', 'ProfileController');
     Route::resource('/assignments', 'AssignmentsController');
     Route::resource('/classes', 'ClassesController');
