@@ -1,3 +1,51 @@
+@media (min-width: 576px) {
+  .row
+  {
+    width: 100%;
+    margin: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    min-width: 576px;
+  }
+}
+
+@media (min-width: 768px) {
+  .row
+  {
+    width: 100%;
+    margin: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    min-width: 768px;
+  }
+}
+
+@media (min-width: 992px) {
+  .row
+  {
+    width: 100%;
+    margin: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    min-width: 900px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .row
+  {
+    width: 100%;
+    margin: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    min-width: 900px;
+  }
+}
+
 html, body
 {
   height: 100%;
@@ -174,16 +222,6 @@ h3
 {
   background-color: #85c12e !important;
   border-color: #85c12e !important;
-}
-
-.row
-{
-  width: 100%;
-  margin: 0 !important;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  min-width: 900px;
 }
 
 #hamburger svg

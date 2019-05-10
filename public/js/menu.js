@@ -15,7 +15,7 @@ $("#hamburger").click(function() {
     $(".mainDiv").css("width", "75%");
     $(".mainDiv").css("max-width", "calc(100% - 300px)");
     $(".mainDiv").css("min-width", "calc(100% - 420px)");
-    $(".item").css("max-width", "48%");
+    $(".item").css("max-width", "46%");
 
     out = false;
   } else {
@@ -32,7 +32,7 @@ $("#hamburger").click(function() {
     $(".mainDiv").css("width", "100%");
     $(".mainDiv").css("max-width", "100%");
     $(".mainDiv").css("min-width", "100%");
-    $(".item").css("max-width", "50%");
+    $(".item").css("max-width", "47.5%");
 
     out = true;
   }
