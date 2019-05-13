@@ -163,8 +163,13 @@ class StudentsController extends Controller
                     $grade = $grade+$groupe->grade;
                 }
             }
-            $data[$student->id]['aantal_gemaakte_opdrachten'] = $totalAssignmentsDone;
-            $data[$student->id]['endGrade'] = $grade/$totalAssignmentsDone;
+            if ($grade != 0 && $totalAssignmentsDone != 0) {
+                $data[$student->id]['aantal_gemaakte_opdrachten'] = $totalAssignmentsDone;
+                $data[$student->id]['endGrade'] = $grade/$totalAssignmentsDone;
+            } else {
+                $data[$student->id]['aantal_gemaakte_opdrachten'] = 0;
+                $data[$student->id]['endGrade'] = 0;
+            }
         }
 
         return $data;

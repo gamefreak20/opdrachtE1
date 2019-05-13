@@ -11,8 +11,11 @@ $( document ).ready(function() {
         } else {
             $.getJSON( "../../searchStudent/"+studentName, function( data ) {
                 var output = "";
+
                 $.each( data, function( key, value ) {
-                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value.id+")'>"+value.name+"</button></p>";
+                    console.log(value);
+
+                    output += "<p class='updateSelect'><button class='btn btn-primary' type='button' onclick='addStudent2("+value[0].id+")'>"+value[0].name+"</button></p>";
                 });
                 if (output == "") {
                   $("#searchStudentNameField").html("<p class='updateSelect'>Geen studenten gevonden</p>");
