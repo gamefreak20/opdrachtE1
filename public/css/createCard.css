@@ -52,4 +52,23 @@
 #submitBtn
 {
   margin-left: 20px;
+  float: left;
+}
+
+.card
+{
+  width: 100%;
+}
+
+.input
+{
+  padding: 0px 20px;
+  margin: 20px 0px !important;
+}
+
+.form-control
+{
+  width: calc(100% - 195px);
+  float: left;
+  margin-bottom: 0;
 }
