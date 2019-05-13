@@ -31,12 +31,13 @@
                   <tr>
                       <th scope="col">#</th>
                       <th scope="col">Klas</th>
-                      <th scope="col">Gemiddelde cijfer klas</th>
-                      <th scope="col">Gemiddelde aantal opdrachten gemaakt</th>
+                      <th scope="col">Gemiddelde cijfer van de klas</th>
+                      <th scope="col">Gemiddeld aantal opdrachten gemaakt</th>
                       <th scope="col">Acties</th>
                   </tr>
                   </thead>
                   <tbody id="hiddenDataClass">
+                  @php($counterPerRow = 1)
                   @foreach($classes as $class)
 
                       @php($count = 0)
@@ -69,10 +70,10 @@
                       @endif
 
                       <tr>
-                          <th scope="row" id="class{{$class->name}}">1</th>
+                          <th scope="row" id="class{{$class->name}}">{{$counterPerRow++}}</th>
                           <td>{{$class->name}}</td>
-                          <td>{{$averageGrade}}</td>
-                          <td>{{$averageAssignments}}</td>
+                          <td>{{round($averageGrade, 2)}}</td>
+                          <td>{{round($averageAssignments, 2)}}</td>
                           <td><svg class="tableBtn" onclick="window.location='{{route('classes.show', $class->id)}}'" version="1.1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M9,15 L11,15 L11,9 L9,9 L9,15 L9,15 Z M10,0 C4.5,0 0,4.5 0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 C20,4.5 15.5,0 10,0 L10,0 Z M10,18 C5.6,18 2,14.4 2,10 C2,5.6 5.6,2 10,2 C14.4,2 18,5.6 18,10 C18,14.4 14.4,18 10,18 L10,18 Z M9,7 L11,7 L11,5 L9,5 L9,7 L9,7 Z" id="Shape"/></svg>
                               <svg class="tableBtn" onclick="window.location='{{route('classes.edit', $class->id)}}'" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                    viewBox="0 0 20 18" style="enable-background:new 0 0 20 18;" xml:space="preserve"><path id="Shape" d="M1,14.2V18h3.8l11-11.1L12,3.1L1,14.2z M18.7,4c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8 L17,5.9L18.7,4z"/></svg>
