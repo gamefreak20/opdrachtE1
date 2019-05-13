@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Psy\Util\Str;
 
 class AssignmentsController extends Controller
 {
@@ -36,6 +38,7 @@ class AssignmentsController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->validate([
             'number' => 'required',
             'value' => 'required|numeric',
@@ -46,9 +49,12 @@ class AssignmentsController extends Controller
 
         $input['conditional'] = $request['conditional'];
 
-        Assignment::create($input);
+        $assigment = Assignment::create($input);
+
+        $request->file('infoFile')->storeAs('infoFile', $assigment->id.'.pdf');
 
         return redirect(route('assignments.index'));
+
     }
 
     /**
@@ -59,8 +65,8 @@ class AssignmentsController extends Controller
      */
     public function show($id)
     {
-        $assignment = Assignment::findOrFail($id);
-        return view('assignments.show', compact(['assignment']));
+        return Storage::download('infoFile/'.$id.'.pdf');
+        return redirect(route('assignments.index'));
     }
 
     /**

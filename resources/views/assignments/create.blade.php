@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col card">
-        {!! Form::open(['method'=>'POST', 'action'=>['AssignmentsController@store'], 'class' => '']) !!}
+        {!! Form::open(['method'=>'POST', 'action'=>['AssignmentsController@store'], 'files'=>true, 'class' => '']) !!}
         <div class="card">
             <div class="card-header">
                 Maak een opdracht aan
@@ -40,7 +40,7 @@
                           Info:
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                              <input type="file" class="custom-file-input" id="inputGroupFile04" name="infoFile" aria-describedby="inputGroupFileAddon04" required>
                               <label class="custom-file-label" for="inputGroupFile04">Kies bestand</label>
                             </div>
                           </div>
