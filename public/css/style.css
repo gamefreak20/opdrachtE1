@@ -234,3 +234,18 @@ h3
   z-index: 3;
   transition: .2s;
 }
+
+.red
+{
+  color: red;
+}
+
+.orange
+{
+  color: orange;
+}
+
+.green
+{
+  color: green;
+}
