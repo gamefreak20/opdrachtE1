@@ -40,7 +40,7 @@
                           Info:
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                              <input type="file" class="custom-file-input" id="inputGroupFile04" name="infoFile" aria-describedby="inputGroupFileAddon04">
                               <label class="custom-file-label" for="inputGroupFile04">Kies bestand</label>
                             </div>
                           </div>

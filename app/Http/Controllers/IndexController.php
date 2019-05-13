@@ -169,7 +169,7 @@ class IndexController extends Controller
                 } else {
                     $data4End = 0;
                 }
-                $data[$chart->label] = array (
+                $data["Gemiddelde cijfer van alle klassen"] = array (
                     'data' => [
                         $data1End,
                         $data2End,
@@ -210,7 +210,7 @@ class IndexController extends Controller
                 $data4End = count($data4)/$totalStudents;
 
 
-                $data[$chart->label] = array (
+                $data["Gemiddelde aantal opdrachten per persoon van alle klassen"] = array (
                     'data' => [
                         $data1End,
                         $data2End,
@@ -249,7 +249,7 @@ class IndexController extends Controller
                 $data4End = count($data4)/$totalStudents;
 
 
-                $data[$chart->label . " " . $chart->data] = array (
+                $data["Gemiddelde aantal opdrachten per persoon van de klas" . " " . $chart->data] = array (
                     'data' => [
                         $data1End,
                         $data2End,

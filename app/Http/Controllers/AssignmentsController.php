@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Assignment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AssignmentsController extends Controller
 {
@@ -36,6 +37,7 @@ class AssignmentsController extends Controller
      */
     public function store(Request $request)
     {
+        /*
         $input = $request->validate([
             'number' => 'required',
             'value' => 'required|numeric',
@@ -46,9 +48,29 @@ class AssignmentsController extends Controller
 
         $input['conditional'] = $request['conditional'];
 
-        Assignment::create($input);
+        $assigment = Assignment::create($input);
 
         return redirect(route('assignments.index'));
+        */
+//        Storage::put('1.pdf', );
+//        $request->infoFile->store('infoFile');
+        Storage::put('1.pdf', $request->file('infoFile'));
+    /*
+        if ($request->hasFile('infoFile')) {
+            $file = $request->file('infoFile');
+            if ($file->isValid()) {
+                if ($file['extension'] == 'pdf') {
+                    return 'yes';
+                } else {
+                    return 'no1';
+                }
+            } else {
+                return 'no2';
+            }
+        } else {
+            return 'no3';
+        }
+    */
     }
 
     /**
